@@ -1,0 +1,26 @@
+{
+    "name": "Appalachia.KOC.Crafting",
+    "rootNamespace": "",
+    "references": [
+        "GUID:195705ddaa6fe6c42a576177c5d36a5c",
+        "GUID:a15d55b77c0da1b42af8372f5619c965",
+        "GUID:bd2961106a865a542b8ec0d49cb152f3",
+        "GUID:4a600fa6fa2ca854b8f233a23710b315",
+        "GUID:873f913f34eb2c34385d17b9a87f21b9",
+        "GUID:01789cac4a2597b458bedef85a39c3f2",
+        "GUID:4c32fdd75da6bc94f9b79f03f11f5e30",
+        "GUID:15a8a4345cdb8584c9a4bab175bd5ded",
+        "GUID:cf75d8bea22d8fb469a2aa239cfc6930",
+        "GUID:4f51890e4f8fa0a4fb69d0fd0e4e89c2",
+        "GUID:6b8c99229a4703f47b9e6e696c2e8d8d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

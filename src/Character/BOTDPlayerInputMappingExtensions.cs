@@ -6,7 +6,7 @@ namespace Appalachia.KOC.Character
     {
         public static BOTDPlayerInput GetKeyboardInput(this IBOTDPlayerInputMapping mapping)
         {
-            return new BOTDPlayerInput
+            return new()
             {
                 move = new Vector2(Input.GetAxis(mapping.moveX), Input.GetAxis(mapping.moveY)),
                 look = new Vector2(Input.GetAxis(mapping.lookY), Input.GetAxis(mapping.lookX)),
@@ -17,7 +17,7 @@ namespace Appalachia.KOC.Character
 
         public static BOTDPlayerInput GetControllerInput(this IBOTDPlayerInputMapping mapping)
         {
-            return new BOTDPlayerInput
+            return new()
             {
                 move = new Vector2(Input.GetAxis(mapping.moveX), Input.GetAxis(mapping.moveY)),
                 look = new Vector2(Input.GetAxis(mapping.lookY), Input.GetAxis(mapping.lookX)),

@@ -8,13 +8,13 @@ using UnityEditor;
 namespace Appalachia.KOC.Crafting
 {
     /// <summary>
-    /// A flexible category of raw materials.  For example, wood.
+    ///     A flexible category of raw materials.  For example, wood.
     /// </summary>
     [Serializable]
     public class CraftingMaterialCategory : CraftingIconComponent<CraftingMaterialCategory>
     {
         public List<CraftingMaterial> materials;
-        
+
         [ButtonGroup]
         public void NewMaterial()
         {
@@ -22,11 +22,15 @@ namespace Appalachia.KOC.Crafting
             {
                 materials = new List<CraftingMaterial>();
             }
-            
+
             materials.Add(CraftingMaterial.CreateNew());
         }
-        
-        [MenuItem(CraftableConstants.MATERIAL_CATEGORY_MENU, false, CraftableConstants.MATERIAL_CATEGORY_PRIORITY)]
+
+        [MenuItem(
+            CraftableConstants.MATERIAL_CATEGORY_MENU,
+            false,
+            CraftableConstants.MATERIAL_CATEGORY_PRIORITY
+        )]
         private static void MENU_CREATE()
         {
             var created = CreateNew();

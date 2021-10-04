@@ -10,13 +10,14 @@ namespace Appalachia.KOC.Character.States
         [SerializeField] public LookingState looking;
         [SerializeField] public HumanMovementState movement;
         [SerializeField] public BreathingState breathing;
-        
 
 #region IEquatable
 
         public bool Equals(PlayerState other)
         {
-            return positioning.Equals(other.positioning) && looking.Equals(other.looking) && movement.Equals(other.movement);
+            return positioning.Equals(other.positioning) &&
+                   looking.Equals(other.looking) &&
+                   movement.Equals(other.movement);
         }
 
         public override bool Equals(object obj)

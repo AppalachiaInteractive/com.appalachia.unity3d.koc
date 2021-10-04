@@ -7,23 +7,25 @@ namespace Appalachia.KOC.Character.States
     public struct HumanPositioningState : IEquatable<HumanPositioningState>
     {
         [SerializeField] public FootPlacementState leftFoot;
-        
+
         [SerializeField] public FootPlacementState rightFoot;
-        
+
         [SerializeField] public HumanFeet feetPlanted;
-        
+
+        [SerializeField] public Vector3 lastVegetationPosition;
+
         public bool hasNoFeetPlanted => feetPlanted == HumanFeet.Neither;
         public bool hasAnyFootPlanted => feetPlanted != HumanFeet.Neither;
         public bool hasBothFeetPlanted => feetPlanted == HumanFeet.Both;
-        
-        
-        [SerializeField] public Vector3 lastVegetationPosition;
-        
+
 #region IEquatable
 
         public bool Equals(HumanPositioningState other)
         {
-            return leftFoot.Equals(other.leftFoot) && rightFoot.Equals(other.rightFoot) && feetPlanted == other.feetPlanted && lastVegetationPosition.Equals(other.lastVegetationPosition);
+            return leftFoot.Equals(other.leftFoot) &&
+                   rightFoot.Equals(other.rightFoot) &&
+                   (feetPlanted == other.feetPlanted) &&
+                   lastVegetationPosition.Equals(other.lastVegetationPosition);
         }
 
         public override bool Equals(object obj)

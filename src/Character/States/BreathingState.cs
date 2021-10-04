@@ -21,6 +21,5 @@ namespace Appalachia.KOC.Character.States
 
         public bool inhaling => state == BreathDirection.Inhale;
         public bool exhaling => state == BreathDirection.Exhale;
-
     }
 }

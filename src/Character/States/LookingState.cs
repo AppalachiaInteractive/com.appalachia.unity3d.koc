@@ -7,7 +7,7 @@ namespace Appalachia.KOC.Character.States
     public struct LookingState : IEquatable<LookingState>
     {
         [SerializeField] public Vector2 lookingAngles;
-        
+
 #region IEquatable
 
         public bool Equals(LookingState other)

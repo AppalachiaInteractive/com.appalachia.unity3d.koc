@@ -4,8 +4,9 @@ using Appalachia.Audio.Contextual.Context.Collections;
 
 namespace Appalachia.KOC.Character.Audio.Sounds
 {
-    [Serializable] public class HumanFoliageSounds : AudioContextCollection2<FoliageType_AudioContexts, MovementSpeed_AudioContexts, HumanFoliageSounds>
+    [Serializable]
+    public class HumanFoliageSounds : AudioContextCollection2<FoliageType_AudioContexts,
+        MovementSpeed_AudioContexts, HumanFoliageSounds>
     {
-        
     }
 }

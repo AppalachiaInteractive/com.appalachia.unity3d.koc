@@ -7,12 +7,14 @@ namespace Appalachia.KOC.Character.Settings
     [Serializable]
     public struct PlayerLocomotion : IEquatable<PlayerLocomotion>
     {
-        [PropertyRange(0f, 10f), Tooltip("[0, 10]")]
+        [PropertyRange(0f, 10f)]
+        [Tooltip("[0, 10]")]
         public float walkSpeed;
 
-        [PropertyRange(0f, 10f), Tooltip("[0, 10]")]
+        [PropertyRange(0f, 10f)]
+        [Tooltip("[0, 10]")]
         public float runSpeed;
-        
+
 #region IEquatable
 
         public bool Equals(PlayerLocomotion other)

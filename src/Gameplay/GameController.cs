@@ -7,123 +7,152 @@ using UnityEngine;
 using UnityEngine.Profiling;
 using Object = UnityEngine.Object;
 
-namespace Appalachia.KOC.Gameplay {
+namespace Appalachia.KOC.Gameplay
+{
+    public class GameController : InternalMonoBehaviour
+    {
+        public delegate void AudioTransformsUpdater(Transform root, Transform eye);
 
-public class GameController: InternalMonoBehaviour {
-    public static GameController FindGameController() {
-        return GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-    }
+        public SpawnPoint startPoint;
 
-    public SpawnPoint startPoint;
-    public SpawnPoint lastPlayerSpawnPoint { get; private set; }
+        public PlayerController playerPrefab;
+        public PlayerCamera playerCameraPrefab;
+        public AudioTransformsUpdater audioTransformsUpdater;
+        public SpawnPoint lastPlayerSpawnPoint { get; private set; }
 
-    public PlayerController playerPrefab;
-    public PlayerCamera playerCameraPrefab;
+        public PlayerController playerController { get; set; }
+        public PlayerCamera playerCamera { get; set; }
+        public Camera defaultCamera { get; set; }
 
-    public PlayerController playerController { get; set; }
-    public PlayerCamera playerCamera { get; set; }
-    public Camera defaultCamera { get; set; }
+        public Object debugContext { get; set; }
 
-    public Object debugContext { get; set; }
+        protected void Start()
+        {
+            defaultCamera = Camera.main;
 
-    public delegate void AudioTransformsUpdater(Transform root, Transform eye);
-    public AudioTransformsUpdater audioTransformsUpdater;
+            var cameraTransform = defaultCamera.transform;
+            cameraTransform.localPosition = Vector3.zero;
+            cameraTransform.localRotation = Quaternion.identity;
+            cameraTransform.localScale = Vector3.one;
 
-    protected void Start() {
-        defaultCamera = Camera.main;
-
-        var cameraTransform = defaultCamera.transform;
-        cameraTransform.localPosition = Vector3.zero;
-        cameraTransform.localRotation = Quaternion.identity;
-        cameraTransform.localScale = Vector3.one;
-
-        BOTDPlayerInput.SelectInputMapping();
-    }
-
-    public void DespawnPlayer() {
-        if (playerController)
-            Destroy(playerController.gameObject);
-
-        if (playerCamera)
-            Destroy(playerCamera.gameObject);
-
-        playerController = null;
-        playerCamera = null;
-    }
-
-    public SpawnPoint[] GetAllSpawnPoints() {
-        return
-            (from a in GameAgent.GetAgents()
-                where a is SpawnPoint
-                select a as SpawnPoint).ToArray();
-    }
-
-	public SpawnPoint GetSpawnPoint(string name) {
-        return SpawnPoint.Find(name);
-    }
-
-    public SpawnPoint GetNextPlayerSpawnPoint() {
-        var spawnPoints = GetAllSpawnPoints();
-        Array.Sort(spawnPoints, (x, y) => string.Compare(x.agentIdentifier, y.agentIdentifier));
-        int index = Array.IndexOf(spawnPoints, lastPlayerSpawnPoint);
-        return spawnPoints[(index + 1) % spawnPoints.Length];
-    }
-
-    public void SpawnPlayer(bool reset = true, bool nextFrame = true) {
-        SpawnPlayer(startPoint, reset, nextFrame);
-    }
-
-    public void SpawnPlayer(SpawnPoint spawnPoint, bool reset = true, bool nextFrame = true) {
-        StartCoroutine(SpawnPlayerCo(spawnPoint, reset, nextFrame));
-    }
-
-    IEnumerator SpawnPlayerCo(SpawnPoint spawnPoint, bool reset, bool nextFrame) {
-        if (nextFrame)
-            yield return null;
-
-        Profiler.BeginSample("SpawnPlayerCo");
-
-        lastPlayerSpawnPoint = spawnPoint;
-
-        if (!playerPrefab) {
-            Debug.LogError("Missing player prefab");
-            yield break;
+            BOTDPlayerInput.SelectInputMapping();
         }
 
-        if (!playerController)
-            playerController = Instantiate(playerPrefab);
+        public static GameController FindGameController()
+        {
+            return GameObject.FindGameObjectWithTag("GameController")
+                             .GetComponent<GameController>();
+        }
 
-        if (!playerCamera)
-            playerCamera = Instantiate(playerCameraPrefab);
+        public void DespawnPlayer()
+        {
+            if (playerController)
+            {
+                Destroy(playerController.gameObject);
+            }
 
-        for (var i = GameAgent.GetEnumerator(); i.MoveNext();)
-            if (i.Current)
-                i.Current.OnBeforeSpawnPlayer(reset);
+            if (playerCamera)
+            {
+                Destroy(playerCamera.gameObject);
+            }
 
-        var camera = spawnPoint.camera ? spawnPoint.camera : defaultCamera;
-        var cameraTransform = camera.transform;
-        cameraTransform.parent =
-            playerCamera.eyeTransform ? playerCamera.eyeTransform : playerCamera.transform;
+            playerController = null;
+            playerCamera = null;
+        }
 
-        cameraTransform.localPosition = Vector3.zero;
-        cameraTransform.localRotation = Quaternion.identity;
-        cameraTransform.localScale = Vector3.one;
+        public SpawnPoint[] GetAllSpawnPoints()
+        {
+            return (from a in GameAgent.GetAgents() where a is SpawnPoint select a as SpawnPoint)
+               .ToArray();
+        }
 
-        playerCamera.camera = camera;
-        playerController.playerCamera = playerCamera;
+        public SpawnPoint GetSpawnPoint(string name)
+        {
+            return SpawnPoint.Find(name);
+        }
 
-        if (audioTransformsUpdater != null)
-            audioTransformsUpdater(playerController.transform, camera.transform);
+        public SpawnPoint GetNextPlayerSpawnPoint()
+        {
+            var spawnPoints = GetAllSpawnPoints();
+            Array.Sort(spawnPoints, (x, y) => string.Compare(x.agentIdentifier, y.agentIdentifier));
+            var index = Array.IndexOf(spawnPoints, lastPlayerSpawnPoint);
+            return spawnPoints[(index + 1) % spawnPoints.Length];
+        }
 
-        spawnPoint.Spawn(playerController, reset);
+        public void SpawnPlayer(bool reset = true, bool nextFrame = true)
+        {
+            SpawnPlayer(startPoint, reset, nextFrame);
+        }
 
-        for (var i = GameAgent.GetEnumerator(); i.MoveNext();)
-            if (i.Current)
-                i.Current.OnAfterSpawnPlayer(spawnPoint, reset);
+        public void SpawnPlayer(SpawnPoint spawnPoint, bool reset = true, bool nextFrame = true)
+        {
+            StartCoroutine(SpawnPlayerCo(spawnPoint, reset, nextFrame));
+        }
 
-        Profiler.EndSample();
+        private IEnumerator SpawnPlayerCo(SpawnPoint spawnPoint, bool reset, bool nextFrame)
+        {
+            if (nextFrame)
+            {
+                yield return null;
+            }
+
+            Profiler.BeginSample("SpawnPlayerCo");
+
+            lastPlayerSpawnPoint = spawnPoint;
+
+            if (!playerPrefab)
+            {
+                Debug.LogError("Missing player prefab");
+                yield break;
+            }
+
+            if (!playerController)
+            {
+                playerController = Instantiate(playerPrefab);
+            }
+
+            if (!playerCamera)
+            {
+                playerCamera = Instantiate(playerCameraPrefab);
+            }
+
+            for (var i = GameAgent.GetEnumerator(); i.MoveNext();)
+            {
+                if (i.Current)
+                {
+                    i.Current.OnBeforeSpawnPlayer(reset);
+                }
+            }
+
+            var camera = spawnPoint.camera ? spawnPoint.camera : defaultCamera;
+            var cameraTransform = camera.transform;
+            cameraTransform.parent = playerCamera.eyeTransform
+                ? playerCamera.eyeTransform
+                : playerCamera.transform;
+
+            cameraTransform.localPosition = Vector3.zero;
+            cameraTransform.localRotation = Quaternion.identity;
+            cameraTransform.localScale = Vector3.one;
+
+            playerCamera.camera = camera;
+            playerController.playerCamera = playerCamera;
+
+            if (audioTransformsUpdater != null)
+            {
+                audioTransformsUpdater(playerController.transform, camera.transform);
+            }
+
+            spawnPoint.Spawn(playerController, reset);
+
+            for (var i = GameAgent.GetEnumerator(); i.MoveNext();)
+            {
+                if (i.Current)
+                {
+                    i.Current.OnAfterSpawnPlayer(spawnPoint, reset);
+                }
+            }
+
+            Profiler.EndSample();
+        }
     }
-}
-
 } // Gameplay
-

@@ -10,13 +10,16 @@ using UnityEditor;
 namespace Appalachia.KOC.Crafting
 {
     /// <summary>
-    /// A raw material used in crafting.  For example, white pine wood.
+    ///     A raw material used in crafting.  For example, white pine wood.
     /// </summary>
     [Serializable]
-    public class CraftingMaterial : CraftingIconComponent<CraftingMaterial> 
+    public class CraftingMaterial : CraftingIconComponent<CraftingMaterial>
     {
+        [NonSerialized]
+        [ShowInInspector]
+        private List<CraftingMaterialCategory> _categories;
+
         [NonSerialized] private bool _categoriesInitialized;
-        [NonSerialized, ShowInInspector] private List<CraftingMaterialCategory> _categories;
 
         [OnInspectorGUI]
         private void SetupCategories()
@@ -27,7 +30,7 @@ namespace Appalachia.KOC.Crafting
             }
 
             _categoriesInitialized = true;
-            
+
             RefreshCategories();
         }
 

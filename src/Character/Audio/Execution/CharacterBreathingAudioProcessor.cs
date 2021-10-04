@@ -13,7 +13,8 @@ using UnityEngine;
 namespace Appalachia.KOC.Character.Audio.Execution
 {
     [Serializable]
-    public class CharacterBreathingAudioProcessor : CharacterAudioExecutionProcessor<HumanBreathingSounds, AudioContext3, AudioContextParameters3>
+    public class CharacterBreathingAudioProcessor : CharacterAudioExecutionProcessor<
+        HumanBreathingSounds, AudioContext3, AudioContextParameters3>
     {
         protected override void OnInitialize(CharacterAudioExecutionManagerBehaviour owner)
         {
@@ -33,11 +34,12 @@ namespace Appalachia.KOC.Character.Audio.Execution
             var breathing = state.breathing;
             var settings = player.settings;
             var breathingSettings = settings.breathing;
-            
+
             var intensity = movement.jumping ? 1f : movement.speedScalar;
-            
-            var playerJumping = movement.jumping || movement.jumpStart || positioning.hasNoFeetPlanted;            
-            
+
+            var playerJumping =
+                movement.jumping || movement.jumpStart || positioning.hasNoFeetPlanted;
+
             if (positioning.hasAnyFootPlanted && !movement.swimming)
             {
                 var deltaTime = Time.deltaTime;
@@ -47,15 +49,22 @@ namespace Appalachia.KOC.Character.Audio.Execution
                     deltaTime = 0f; // infinite time dilation when jumping to synchronize landing
                 }
 
-                breathing.nextIntensity += (intensity - breathingSettings.intensityDampening) * deltaTime;
+                breathing.nextIntensity +=
+                    (intensity - breathingSettings.intensityDampening) * deltaTime;
                 breathing.nextIntensity = Mathf.Clamp01(breathing.nextIntensity);
-                breathing.nextPace = Mathf.Lerp(breathing.nextPace, breathing.nextIntensity * breathing.nextIntensity * breathing.nextIntensity, deltaTime * breathingSettings.intensityTransference);
+                breathing.nextPace = Mathf.Lerp(
+                    breathing.nextPace,
+                    breathing.nextIntensity * breathing.nextIntensity * breathing.nextIntensity,
+                    deltaTime * breathingSettings.intensityTransference
+                );
 
-                breathing.period = breathingSettings.GetBreathingPeriod() - (breathing.nextIntensity * breathingSettings.breathingPeriodIntensityFactor);
+                breathing.period = breathingSettings.GetBreathingPeriod() -
+                                   (breathing.nextIntensity *
+                                    breathingSettings.breathingPeriodIntensityFactor);
                 breathing.time -= deltaTime / breathing.period;
 
                 if (breathing.time <= 0f)
-                {                                       
+                {
                     if (breathing.state == BreathDirection.Inhale)
                     {
                         breathing.state = BreathDirection.Exhale;
@@ -65,13 +74,17 @@ namespace Appalachia.KOC.Character.Audio.Execution
                     {
                         breathing.currentPace = breathing.nextPace;
                         breathing.currentIntensity = breathing.nextIntensity;
-                        
+
                         breathing.state = BreathDirection.Inhale;
                         breathing.time = breathingSettings.GetInhalePeriod();
-                        breathing.time -= breathing.time * breathing.currentPace * breathingSettings.inhalePeriodPacingFactor;
-                        
-                        breathing.style = breathing.currentPace > .5f ? RespirationStyle.Mouth : RespirationStyle.Nose;
-                        
+                        breathing.time -= breathing.time *
+                                          breathing.currentPace *
+                                          breathingSettings.inhalePeriodPacingFactor;
+
+                        breathing.style = breathing.currentPace > .5f
+                            ? RespirationStyle.Mouth
+                            : RespirationStyle.Nose;
+
                         if (breathing.style == RespirationStyle.Nose)
                         {
                             breathing.speed = breathing.currentIntensity >= 0.66f
@@ -87,15 +100,22 @@ namespace Appalachia.KOC.Character.Audio.Execution
                                 : RespirationSpeed.Slow;
                         }
                     }
-                    
+
                     volume = breathingSettings.GetVolumeOverPace();
                     volume = Mathf.Clamp01(volume + (breathing.currentPace * volume));
 
-                    var bestPatch = audio.GetBest(Health_AudioContexts.Healthy, breathing.speed.ToAudio(), breathing.style.ToAudio(), out var successful);
+                    var bestPatch = audio.GetBest(
+                        Health_AudioContexts.Healthy,
+                        breathing.speed.ToAudio(),
+                        breathing.style.ToAudio(),
+                        out var successful
+                    );
 
-                    patch = successful ? bestPatch % (breathing.state == BreathDirection.Inhale) : default;
+                    patch = successful
+                        ? bestPatch % (breathing.state == BreathDirection.Inhale)
+                        : default;
                     envelope = default;
-                    position = successful ? owner.player.parts.mouth.position : default;                    
+                    position = successful ? owner.player.parts.mouth.position : default;
 
                     return true;
                 }
@@ -118,17 +138,21 @@ namespace Appalachia.KOC.Character.Audio.Execution
             throw new NotImplementedException();
         }
 
-        public override void OnJump(PlayerCharacter player, CharacterAudioExecutionManagerBehaviour audioManager)
+        public override void OnJump(
+            PlayerCharacter player,
+            CharacterAudioExecutionManagerBehaviour audioManager)
         {
             var breathing = player.state.breathing;
-            
+
             if (breathing.inhaling && (Mathf.Abs(breathing.time - breathing.period) >= 1f))
             {
                 breathing.time = 0f;
             }
         }
 
-        public override void OnLand(PlayerCharacter player, CharacterAudioExecutionManagerBehaviour audioManager)
+        public override void OnLand(
+            PlayerCharacter player,
+            CharacterAudioExecutionManagerBehaviour audioManager)
         {
             var breathing = player.state.breathing;
             if (!breathing.inhaling && (Mathf.Abs(breathing.time - breathing.period) >= 0.667f))

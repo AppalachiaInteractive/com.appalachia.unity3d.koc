@@ -13,12 +13,18 @@ namespace Appalachia.KOC.Character.States
         [SerializeField] public bool swimming;
         [SerializeField] public bool jumping;
         [SerializeField] public bool jumpStart;
-        
+
 #region IEquatable
 
         public bool Equals(HumanMovementState other)
         {
-            return movingSpeed.Equals(other.movingSpeed) && speedScalar.Equals(other.speedScalar) && jumpSpeedScalar.Equals(other.jumpSpeedScalar) && jumpingScalar.Equals(other.jumpingScalar) && swimming == other.swimming && jumping == other.jumping && jumpStart == other.jumpStart;
+            return movingSpeed.Equals(other.movingSpeed) &&
+                   speedScalar.Equals(other.speedScalar) &&
+                   jumpSpeedScalar.Equals(other.jumpSpeedScalar) &&
+                   jumpingScalar.Equals(other.jumpingScalar) &&
+                   (swimming == other.swimming) &&
+                   (jumping == other.jumping) &&
+                   (jumpStart == other.jumpStart);
         }
 
         public override bool Equals(object obj)

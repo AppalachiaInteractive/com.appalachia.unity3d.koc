@@ -8,7 +8,6 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class CraftingKnowledge : CraftingIconComponent<CraftingKnowledge>
     {
-        
         [MenuItem(CraftableConstants.KNOWLEDGE_MENU, false, CraftableConstants.KNOWLEDGE_PRIORITY)]
         private static void MENU_CREATE()
         {

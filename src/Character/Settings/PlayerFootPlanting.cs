@@ -9,20 +9,26 @@ namespace Appalachia.KOC.Character.Settings
     {
         public LayerMask floorLayers;
 
-        [PropertyRange(0, 10f), Tooltip("[0, 10]")]
+        [PropertyRange(0, 10f)]
+        [Tooltip("[0, 10]")]
         public float walkStepDistance;
 
-        [PropertyRange(0, 10f), Tooltip("[0, 10]")]
+        [PropertyRange(0, 10f)]
+        [Tooltip("[0, 10]")]
         public float runStepDistance;
 
-        [PropertyRange(0, 10f), Tooltip("[0, 10]")]
+        [PropertyRange(0, 10f)]
+        [Tooltip("[0, 10]")]
         public float stopSpeedThreshold;
-        
+
 #region IEquatable
 
         public bool Equals(PlayerFootPlanting other)
         {
-            return floorLayers.Equals(other.floorLayers) && walkStepDistance.Equals(other.walkStepDistance) && runStepDistance.Equals(other.runStepDistance) && stopSpeedThreshold.Equals(other.stopSpeedThreshold);
+            return floorLayers.Equals(other.floorLayers) &&
+                   walkStepDistance.Equals(other.walkStepDistance) &&
+                   runStepDistance.Equals(other.runStepDistance) &&
+                   stopSpeedThreshold.Equals(other.stopSpeedThreshold);
         }
 
         public override bool Equals(object obj)

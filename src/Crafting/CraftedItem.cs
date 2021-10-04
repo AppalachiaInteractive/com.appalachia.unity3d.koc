@@ -10,7 +10,7 @@ namespace Appalachia.KOC.Crafting
     public class CraftedItem : CraftingIconComponent<CraftedItem>
     {
         public GameObject product;
-        
+
         [MenuItem(CraftableConstants.ITEM_MENU, false, CraftableConstants.ITEM_PRIORITY)]
         private static void MENU_CREATE()
         {

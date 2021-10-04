@@ -9,6 +9,16 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class CraftingRecipeElementOption
     {
+        [SmartLabel] public Duration craftingTime;
+
+        public List<CraftingIngredient> ingredients;
+
+        [InlineEditor] public List<CraftingKnowledge> knowledges;
+
+        [InlineEditor] public List<CraftingSkill> skills;
+
+        [InlineEditor] public List<CraftingTool> tools;
+
         public CraftingRecipeElementOption()
         {
             craftingTime = Duration.ONE_MINUTE();
@@ -17,20 +27,6 @@ namespace Appalachia.KOC.Crafting
             skills = new List<CraftingSkill>();
             tools = new List<CraftingTool>();
         }
-        
-        [SmartLabel]
-        public Duration craftingTime;
-        
-        public List<CraftingIngredient> ingredients;
-        
-        [InlineEditor]
-        public List<CraftingKnowledge> knowledges;
-        
-        [InlineEditor]
-        public List<CraftingSkill> skills;
-        
-        [InlineEditor]
-        public List<CraftingTool> tools;
 
         [ButtonGroup]
         public void NewIngredient()
@@ -39,10 +35,10 @@ namespace Appalachia.KOC.Crafting
             {
                 ingredients = new List<CraftingIngredient>();
             }
-            
+
             ingredients.Add(new CraftingIngredient());
         }
-        
+
         [ButtonGroup]
         public void NewKnowledge()
         {
@@ -50,10 +46,10 @@ namespace Appalachia.KOC.Crafting
             {
                 knowledges = new List<CraftingKnowledge>();
             }
-            
+
             knowledges.Add(CraftingKnowledge.CreateNew());
         }
-        
+
         [ButtonGroup]
         public void NewSkill()
         {
@@ -61,10 +57,10 @@ namespace Appalachia.KOC.Crafting
             {
                 skills = new List<CraftingSkill>();
             }
-            
+
             skills.Add(CraftingSkill.CreateNew());
         }
-        
+
         [ButtonGroup]
         public void NewTool()
         {
@@ -72,7 +68,7 @@ namespace Appalachia.KOC.Crafting
             {
                 tools = new List<CraftingTool>();
             }
-            
+
             tools.Add(CraftingTool.CreateNew());
         }
     }

@@ -10,11 +10,11 @@ namespace Appalachia.KOC.Gameplay.Audio
 {
     public class PlayerFoleyZone : Zone
     {
-        public static readonly List<PlayerFoleyZone> overrides = new List<PlayerFoleyZone>();
-
-        internal int lastFrame = -1;
+        public static readonly List<PlayerFoleyZone> overrides = new();
 
         internal bool isOverride;
+
+        internal int lastFrame = -1;
 
         protected new void OnDisable()
         {

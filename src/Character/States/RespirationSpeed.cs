@@ -4,6 +4,6 @@ namespace Appalachia.KOC.Character.States
     {
         Normal = 0,
         Slow = 10,
-        Fast = 20,
+        Fast = 20
     }
 }

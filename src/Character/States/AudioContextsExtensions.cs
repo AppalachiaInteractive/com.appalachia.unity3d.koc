@@ -19,7 +19,7 @@ namespace Appalachia.KOC.Character.States
                     throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
         }
-        
+
         public static RespirationStyle_AudioContexts ToAudio(this RespirationStyle value)
         {
             switch (value)

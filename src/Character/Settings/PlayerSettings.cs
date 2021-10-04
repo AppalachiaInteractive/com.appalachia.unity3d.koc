@@ -17,10 +17,10 @@ namespace Appalachia.KOC.Character.Settings
             var instance = new PlayerSettings();
 
             instance.Initialize();
-            
+
             return instance;
         }
-        
+
         public void Initialize()
         {
             looking = new PlayerLooking
@@ -30,7 +30,7 @@ namespace Appalachia.KOC.Character.Settings
                 pitchLimitMin = -45f,
                 pitchLimitMax = 90f
             };
-            
+
             footPlanting = new PlayerFootPlanting
             {
                 floorLayers = 1,
@@ -38,11 +38,11 @@ namespace Appalachia.KOC.Character.Settings
                 runStepDistance = 2.5f,
                 stopSpeedThreshold = 0f
             };
-            
+
             jumping = new PlayerJumping {force = 1.15f, dampSpeed = 5f, gravityFactor = 1f};
-            
+
             locomotion = new PlayerLocomotion {walkSpeed = 2f, runSpeed = 6f};
-            
+
             breathing = new Breathing
             {
                 initialDelay = 0.3f,
@@ -60,14 +60,16 @@ namespace Appalachia.KOC.Character.Settings
                 volumeOverPace = 0.8f,
                 volumeOverPaceVariance = 0.2f
             };
-
         }
 
 #region IEquatable
 
         public bool Equals(PlayerSettings other)
         {
-            return looking.Equals(other.looking) && footPlanting.Equals(other.footPlanting) && jumping.Equals(other.jumping) && locomotion.Equals(other.locomotion);
+            return looking.Equals(other.looking) &&
+                   footPlanting.Equals(other.footPlanting) &&
+                   jumping.Equals(other.jumping) &&
+                   locomotion.Equals(other.locomotion);
         }
 
         public override bool Equals(object obj)

@@ -11,10 +11,9 @@ using UnityEngine;
 namespace Appalachia.KOC.Character.Audio.Execution
 {
     [Serializable]
-    public class CharacterFootstepAudioProcessor : CharacterAudioExecutionProcessor<FootstepSounds, AudioContext3, AudioContextParameters3>
+    public class CharacterFootstepAudioProcessor : CharacterAudioExecutionProcessor<FootstepSounds,
+        AudioContext3, AudioContextParameters3>
     {
-
-
         [Tooltip("Amount of attenuation when walking opposed to running")]
         [Range(0, 1)]
         public float footstepSpeedAttenuation = 0.5f;
@@ -34,9 +33,8 @@ namespace Appalachia.KOC.Character.Audio.Execution
             out Vector3 position,
             out float volume)
         {
-
             throw new NotImplementedException();
-                        
+
             /*var foley = GetFoleyAsset();
 
             if (foley && (foley.footsteps.Length > 0))
@@ -60,7 +58,12 @@ namespace Appalachia.KOC.Character.Audio.Execution
             }*/
         }
 
-        public override void Direct(CharacterAudioExecutionManagerBehaviour owner, out Patch patch, out AudioParameters.EnvelopeParams envelope, out Vector3 position, out float volume)
+        public override void Direct(
+            CharacterAudioExecutionManagerBehaviour owner,
+            out Patch patch,
+            out AudioParameters.EnvelopeParams envelope,
+            out Vector3 position,
+            out float volume)
         {
             throw new NotImplementedException();
         }
@@ -128,7 +131,7 @@ namespace Appalachia.KOC.Character.Audio.Execution
             return asset;
         }
         */
-        
+
         /*private Patch GetFootstepAsset(
             FoleyAudioCollection foley,
             Vector3 position,

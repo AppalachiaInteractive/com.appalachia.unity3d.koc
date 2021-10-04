@@ -11,12 +11,16 @@ namespace Appalachia.KOC.Character.States
         public Transform leftHand;
         public Transform rightHand;
         public Transform mouth;
-        
+
 #region IEquatable
 
         public bool Equals(PlayerParts other)
         {
-            return Equals(leftFoot, other.leftFoot) && Equals(rightFoot, other.rightFoot) && Equals(leftHand, other.leftHand) && Equals(rightHand, other.rightHand) && Equals(mouth, other.mouth);
+            return Equals(leftFoot,  other.leftFoot) &&
+                   Equals(rightFoot, other.rightFoot) &&
+                   Equals(leftHand,  other.leftHand) &&
+                   Equals(rightHand, other.rightHand) &&
+                   Equals(mouth,     other.mouth);
         }
 
         public override bool Equals(object obj)
@@ -28,7 +32,7 @@ namespace Appalachia.KOC.Character.States
         {
             unchecked
             {
-                var hashCode = (leftFoot != null ? leftFoot.GetHashCode() : 0);
+                var hashCode = leftFoot != null ? leftFoot.GetHashCode() : 0;
                 hashCode = (hashCode * 397) ^ (rightFoot != null ? rightFoot.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (leftHand != null ? leftHand.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (rightHand != null ? rightHand.GetHashCode() : 0);

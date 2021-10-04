@@ -14,21 +14,30 @@ namespace Appalachia.KOC.Character
 
         static BOTDPlayerInput()
         {
-            _mappings = new IBOTDPlayerInputMapping[Enum.GetNames(typeof(BOTDPlayerInputMapping)).Length];
+            _mappings =
+                new IBOTDPlayerInputMapping[Enum.GetNames(typeof(BOTDPlayerInputMapping)).Length];
 
             foreach (var type in BOTDPlayerInputMappingAttribute.GetTypes())
             {
                 var mapping = Activator.CreateInstance(type) as IBOTDPlayerInputMapping;
 
-                for (var index = 0; index < type.GetCustomAttributes(typeof(BOTDPlayerInputMappingAttribute), false).Length; index++)
+                for (var index = 0;
+                    index <
+                    type.GetCustomAttributes(typeof(BOTDPlayerInputMappingAttribute), false).Length;
+                    index++)
                 {
-                    var attribute = type.GetCustomAttributes(typeof(BOTDPlayerInputMappingAttribute), false)[index];
+                    var attribute = type.GetCustomAttributes(
+                        typeof(BOTDPlayerInputMappingAttribute),
+                        false
+                    )[index];
                     _mappings[((BOTDPlayerInputMappingAttribute) attribute).index] = mapping;
                 }
             }
         }
 
-        public static void SelectInputMapping(BOTDPlayerInputMapping? @override = null, bool force = false)
+        public static void SelectInputMapping(
+            BOTDPlayerInputMapping? @override = null,
+            bool force = false)
         {
             var selected = mapping;
 
@@ -57,24 +66,31 @@ namespace Appalachia.KOC.Character
                     {
                         selected = BOTDPlayerInputMapping.Vive;
                     }
-                    else if ((i.IndexOf("xbox", ignoreCase) >= 0) || (i.IndexOf("360", ignoreCase) >= 0) || (i.IndexOf("gpx", ignoreCase) >= 0))
+                    else if ((i.IndexOf("xbox", ignoreCase) >= 0) ||
+                             (i.IndexOf("360",  ignoreCase) >= 0) ||
+                             (i.IndexOf("gpx",  ignoreCase) >= 0))
                     {
-                        if ((Application.platform == RuntimePlatform.WindowsPlayer) || (Application.platform == RuntimePlatform.WindowsEditor))
+                        if ((Application.platform == RuntimePlatform.WindowsPlayer) ||
+                            (Application.platform == RuntimePlatform.WindowsEditor))
                         {
                             selected = BOTDPlayerInputMapping.XboxForWindows;
                         }
-                        else if ((Application.platform == RuntimePlatform.OSXPlayer) || (Application.platform == RuntimePlatform.OSXEditor))
+                        else if ((Application.platform == RuntimePlatform.OSXPlayer) ||
+                                 (Application.platform == RuntimePlatform.OSXEditor))
                         {
                             selected = BOTDPlayerInputMapping.XboxForMac;
                         }
                     }
-                    else if ((i.IndexOf("sony", ignoreCase) >= 0) || (i.IndexOf("wireless", ignoreCase) >= 0))
+                    else if ((i.IndexOf("sony",     ignoreCase) >= 0) ||
+                             (i.IndexOf("wireless", ignoreCase) >= 0))
                     {
-                        if ((Application.platform == RuntimePlatform.WindowsPlayer) || (Application.platform == RuntimePlatform.WindowsEditor))
+                        if ((Application.platform == RuntimePlatform.WindowsPlayer) ||
+                            (Application.platform == RuntimePlatform.WindowsEditor))
                         {
                             selected = BOTDPlayerInputMapping.PlayStationForWindows;
                         }
-                        else if ((Application.platform == RuntimePlatform.OSXPlayer) || (Application.platform == RuntimePlatform.OSXEditor))
+                        else if ((Application.platform == RuntimePlatform.OSXPlayer) ||
+                                 (Application.platform == RuntimePlatform.OSXEditor))
                         {
                             selected = BOTDPlayerInputMapping.PlayStationForMac;
                         }

@@ -8,10 +8,10 @@ using UnityEditor;
 namespace Appalachia.KOC.Crafting
 {
     [Serializable]
-    public class Craftable : CraftingIconComponent<Craftable> 
+    public class Craftable : CraftingIconComponent<Craftable>
     {
         public List<CraftingRecipe> recipes;
-        
+
         public List<CraftedItem> craftedItems;
 
         [ButtonGroup]
@@ -21,10 +21,10 @@ namespace Appalachia.KOC.Crafting
             {
                 recipes = new List<CraftingRecipe>();
             }
-            
+
             recipes.Add(new CraftingRecipe());
         }
-        
+
         [ButtonGroup]
         public void NewCraftedItem()
         {

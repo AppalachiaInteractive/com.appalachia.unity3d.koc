@@ -7,24 +7,31 @@ namespace Appalachia.KOC.Gameplay.Inputs
 
     public class InputRegistering
     {
-        static bool InputAlreadyRegistered(string name, InputManagerEntry.Kind kind, SerializedProperty spAxes)
+        private static bool InputAlreadyRegistered(
+            string name,
+            InputManagerEntry.Kind kind,
+            SerializedProperty spAxes)
         {
             for (var i = 0; i < spAxes.arraySize; ++i)
             {
                 var spAxis = spAxes.GetArrayElementAtIndex(i);
                 var axisName = spAxis.FindPropertyRelative("m_Name").stringValue;
                 var kindValue = spAxis.FindPropertyRelative("type").intValue;
-                if (axisName == name && (int)kind == kindValue)
+                if ((axisName == name) && ((int) kind == kindValue))
+                {
                     return true;
+                }
             }
 
             return false;
         }
 
-        static void WriteEntry(SerializedProperty spAxes, InputManagerEntry entry)
+        private static void WriteEntry(SerializedProperty spAxes, InputManagerEntry entry)
         {
             if (InputAlreadyRegistered(entry.name, entry.kind, spAxes))
+            {
                 return;
+            }
 
             spAxes.InsertArrayElementAtIndex(spAxes.arraySize);
             var spAxis = spAxes.GetArrayElementAtIndex(spAxes.arraySize - 1);
@@ -39,18 +46,21 @@ namespace Appalachia.KOC.Gameplay.Inputs
             spAxis.FindPropertyRelative("sensitivity").floatValue = entry.sensitivity;
             spAxis.FindPropertyRelative("snap").boolValue = entry.snap;
             spAxis.FindPropertyRelative("invert").boolValue = entry.invert;
-            spAxis.FindPropertyRelative("type").intValue = (int)entry.kind;
-            spAxis.FindPropertyRelative("axis").intValue = (int)entry.axis;
-            spAxis.FindPropertyRelative("joyNum").intValue = (int)entry.joystick;
+            spAxis.FindPropertyRelative("type").intValue = (int) entry.kind;
+            spAxis.FindPropertyRelative("axis").intValue = (int) entry.axis;
+            spAxis.FindPropertyRelative("joyNum").intValue = (int) entry.joystick;
         }
 
         public static void RegisterInputs(List<InputManagerEntry> entries)
         {
             // Grab reference to input manager
             var assets = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset");
+
             // Temporary fix. This happens some time with HDRP init when it's called before asset database is initialized (probably related to package load order).
             if (assets.Length == 0)
+            {
                 return;
+            }
 
             var inputManager = assets[0];
 
@@ -58,7 +68,7 @@ namespace Appalachia.KOC.Gameplay.Inputs
             var soInputManager = new SerializedObject(inputManager);
             var spAxes = soInputManager.FindProperty("m_Axes");
 
-            foreach (InputManagerEntry entry in entries)
+            foreach (var entry in entries)
             {
                 WriteEntry(spAxes, entry);
             }

@@ -7,23 +7,30 @@ namespace Appalachia.KOC.Character.Settings
     [Serializable]
     public struct PlayerLooking : IEquatable<PlayerLooking>
     {
-        [PropertyRange(0.1f, 2f), Tooltip("[0.1, 2]")]
+        [PropertyRange(0.1f, 2f)]
+        [Tooltip("[0.1, 2]")]
         public float lookSpeed;
 
-        [PropertyRange(0.1f, 2f), Tooltip("[0.1, 2]")]
+        [PropertyRange(0.1f, 2f)]
+        [Tooltip("[0.1, 2]")]
         public float runLookSpeed;
 
-        [PropertyRange(-360f, 360f), Tooltip("[-360, 360]")]
+        [PropertyRange(-360f, 360f)]
+        [Tooltip("[-360, 360]")]
         public float pitchLimitMin;
 
-        [PropertyRange(-360f, 360f), Tooltip("[-360, 360]")]
+        [PropertyRange(-360f, 360f)]
+        [Tooltip("[-360, 360]")]
         public float pitchLimitMax;
-        
+
 #region IEquatable
 
         public bool Equals(PlayerLooking other)
         {
-            return lookSpeed.Equals(other.lookSpeed) && runLookSpeed.Equals(other.runLookSpeed) && pitchLimitMin.Equals(other.pitchLimitMin) && pitchLimitMax.Equals(other.pitchLimitMax);
+            return lookSpeed.Equals(other.lookSpeed) &&
+                   runLookSpeed.Equals(other.runLookSpeed) &&
+                   pitchLimitMin.Equals(other.pitchLimitMin) &&
+                   pitchLimitMax.Equals(other.pitchLimitMax);
         }
 
         public override bool Equals(object obj)

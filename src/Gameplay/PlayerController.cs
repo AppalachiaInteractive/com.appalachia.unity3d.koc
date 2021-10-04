@@ -66,7 +66,6 @@ namespace Appalachia.KOC.Gameplay
         {
             base.OnSpawn(spawnPoint, reset);
 
-            var position = transform.localPosition;
             var rotation = transform.localEulerAngles;
             var angles = spawnPoint.transform.localEulerAngles;
 
@@ -77,7 +76,8 @@ namespace Appalachia.KOC.Gameplay
 
             playerCamera.OnSpawn(spawnPoint);
 
-            position = transform.localPosition;
+            var position = transform.localPosition;
+            
             playerCamera.Warp(position, angles);
 
             for (var i = 0; i < 4; ++i)

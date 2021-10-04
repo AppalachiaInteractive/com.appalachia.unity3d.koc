@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Appalachia.Core.Crafting.Base
+namespace Appalachia.KOC.Crafting.Base
 {
     [Serializable]
     public abstract class CraftingIconComponent<T> : CraftingComponent<T>

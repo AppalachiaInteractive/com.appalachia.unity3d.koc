@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Appalachia.Core.Gameplay {
+namespace Appalachia.KOC.Gameplay {
 
 public class SpawnPoint : GameAgent {
     public static new SpawnPoint Find(string id) {

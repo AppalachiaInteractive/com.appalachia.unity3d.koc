@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace Appalachia.Core.Gameplay.Inputs
+namespace Appalachia.KOC.Gameplay.Inputs
 {
 #if UNITY_EDITOR
 

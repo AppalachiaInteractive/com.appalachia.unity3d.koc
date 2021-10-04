@@ -1,8 +1,8 @@
 using System;
-using Appalachia.Core.Editing.Attributes;
+using Appalachia.Editing.Attributes;
 using Sirenix.OdinInspector;
 
-namespace Appalachia.Core.Crafting
+namespace Appalachia.KOC.Crafting
 {
     [Serializable, InlineEditor]
     public class CraftingIngredient

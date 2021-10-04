@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Linq;
-using Appalachia.Core.Behaviours;
-using Appalachia.Core.Character;
+using Appalachia.Base.Behaviours;
+using Appalachia.KOC.Character;
 using UnityEngine;
 using UnityEngine.Profiling;
 using Object = UnityEngine.Object;
 
-namespace Appalachia.Core.Gameplay {
+namespace Appalachia.KOC.Gameplay {
 
 public class GameController: InternalMonoBehaviour {
     public static GameController FindGameController() {

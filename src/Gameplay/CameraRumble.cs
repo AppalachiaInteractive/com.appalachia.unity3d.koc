@@ -1,8 +1,8 @@
 using System;
-using Appalachia.Core.Behaviours;
+using Appalachia.Base.Behaviours;
 using UnityEngine;
 
-namespace Appalachia.Core.Gameplay {
+namespace Appalachia.KOC.Gameplay {
 
 public class CameraRumble: InternalMonoBehaviour {
     static Vector3 Rumble(double time, RumbleInfo outer, RumbleInfo inner) {

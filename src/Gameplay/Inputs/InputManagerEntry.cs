@@ -1,4 +1,4 @@
-namespace Appalachia.Core.Gameplay.Inputs
+namespace Appalachia.KOC.Gameplay.Inputs
 {
     public class InputManagerEntry
     {

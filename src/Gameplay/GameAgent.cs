@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Appalachia.Core.Gameplay {
+namespace Appalachia.KOC.Gameplay {
 
 public abstract class GameAgent : MonoBehaviour {
     static readonly HashSet<GameAgent> agents = new HashSet<GameAgent>();

@@ -1,8 +1,8 @@
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context.Collections;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context.Contexts;
-using Appalachia.Core.Character;
+using Appalachia.Audio.Contextual.Context.Collections;
+using Appalachia.Audio.Contextual.Context.Contexts;
+using Appalachia.Audio.Contextual.Execution;
 
-namespace Appalachia.Core.AssetMetadata.AudioMetadata.Execution
+namespace Appalachia.KOC.Character.Audio.Execution
 {
     public abstract class CharacterAudioExecutionProcessor<TCollection, TContext, TParams> : AudioExecutionProcessor<TCollection, TContext, TParams, CharacterAudioExecutionManagerBehaviour>
         where TCollection : AudioContextCollection<TContext, TParams, TCollection>

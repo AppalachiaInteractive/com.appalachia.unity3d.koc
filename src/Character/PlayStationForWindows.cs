@@ -1,4 +1,4 @@
-namespace Appalachia.Core.Character
+namespace Appalachia.KOC.Character
 {
     [BOTDPlayerInputMapping(BOTDPlayerInputMapping.PlayStationForWindows)]
     internal class PlayStationForWindows : IBOTDPlayerInputMapping

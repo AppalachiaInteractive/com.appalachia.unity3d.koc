@@ -1,8 +1,8 @@
 using System;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context.Collections;
+using Appalachia.Audio.Contextual.Context;
+using Appalachia.Audio.Contextual.Context.Collections;
 
-namespace Appalachia.Core.AssetMetadata.AudioMetadata.Sounds.Character
+namespace Appalachia.KOC.Character.Audio.Sounds
 {
     [Serializable] public class HumanBreathingSounds : AudioContextCollection3<Health_AudioContexts, RespirationSpeed_AudioContexts, RespirationStyle_AudioContexts, HumanBreathingSounds>
     {

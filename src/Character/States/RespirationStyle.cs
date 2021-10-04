@@ -1,4 +1,4 @@
-namespace Appalachia.Core.Character.States
+namespace Appalachia.KOC.Character.States
 {
     public enum RespirationStyle : short
     {

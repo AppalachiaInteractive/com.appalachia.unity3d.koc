@@ -1,7 +1,7 @@
-using Appalachia.Core.PostProcessing.AutoFocus;
+using Appalachia.PostProcessing.AutoFocus;
 using UnityEngine;
 
-namespace Appalachia.Core.Gameplay {
+namespace Appalachia.KOC.Gameplay {
 
 public abstract class PlayerCamera : MonoBehaviour {
     public Transform eyeTransform;

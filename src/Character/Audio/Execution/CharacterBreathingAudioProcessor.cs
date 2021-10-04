@@ -1,18 +1,16 @@
 #region
 
 using System;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context.Contexts;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Sounds.Character;
-using Appalachia.Core.Audio;
-using Appalachia.Core.Audio.Components;
-using Appalachia.Core.Character;
-using Appalachia.Core.Character.States;
+using Appalachia.Audio.Components;
+using Appalachia.Audio.Contextual.Context;
+using Appalachia.Audio.Contextual.Context.Contexts;
+using Appalachia.KOC.Character.Audio.Sounds;
+using Appalachia.KOC.Character.States;
 using UnityEngine;
 
 #endregion
 
-namespace Appalachia.Core.AssetMetadata.AudioMetadata.Execution
+namespace Appalachia.KOC.Character.Audio.Execution
 {
     [Serializable]
     public class CharacterBreathingAudioProcessor : CharacterAudioExecutionProcessor<HumanBreathingSounds, AudioContext3, AudioContextParameters3>

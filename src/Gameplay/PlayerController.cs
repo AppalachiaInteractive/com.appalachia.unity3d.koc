@@ -1,7 +1,7 @@
-using Appalachia.Core.Character;
+using Appalachia.KOC.Character;
 using UnityEngine;
 
-namespace Appalachia.Core.Gameplay {
+namespace Appalachia.KOC.Gameplay {
 
 [SelectionBase]
 [DisallowMultipleComponent]

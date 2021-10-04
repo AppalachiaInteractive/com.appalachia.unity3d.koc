@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Appalachia.Core.Character.Settings
+namespace Appalachia.KOC.Character.Settings
 {
     [Serializable]
     public struct Breathing

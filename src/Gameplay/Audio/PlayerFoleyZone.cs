@@ -1,12 +1,12 @@
 #region
 
 using System.Collections.Generic;
-using Appalachia.Core.Audio.Components;
+using Appalachia.Audio.Components;
 using UnityEngine;
 
 #endregion
 
-namespace Appalachia.Core.Gameplay.Audio
+namespace Appalachia.KOC.Gameplay.Audio
 {
     public class PlayerFoleyZone : Zone
     {

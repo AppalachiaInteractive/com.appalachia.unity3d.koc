@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
-namespace Appalachia.Core.Crafting
+namespace Appalachia.KOC.Crafting
 {
     [Serializable]
     public class CraftingRecipe

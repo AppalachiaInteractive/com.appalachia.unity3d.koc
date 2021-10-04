@@ -1,7 +1,7 @@
 using System;
-using Appalachia.Core.Character.States;
+using Appalachia.Audio.Contextual.Context;
 
-namespace Appalachia.Core.AssetMetadata.AudioMetadata.Context.Contexts
+namespace Appalachia.KOC.Character.States
 {
     public static class AudioContextsExtensions
     {

@@ -1,12 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace Appalachia.Core.Character
+namespace Appalachia.KOC.Character
 {
-    namespace BOTDPlayerInputMappings
-    {
-    } // BOTDPlayerInputMappings
-
     public struct BOTDPlayerInput
     {
         private static readonly IBOTDPlayerInputMapping[] _mappings;

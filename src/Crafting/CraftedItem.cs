@@ -1,10 +1,10 @@
 using System;
-using Appalachia.Core.Crafting.Base;
-using Appalachia.Core.Crafting.Utility;
+using Appalachia.KOC.Crafting.Base;
+using Appalachia.KOC.Crafting.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace Appalachia.Core.Crafting
+namespace Appalachia.KOC.Crafting
 {
     [Serializable]
     public class CraftedItem : CraftingIconComponent<CraftedItem>

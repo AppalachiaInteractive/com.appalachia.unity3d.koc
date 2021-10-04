@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Appalachia.Core.Editing.Attributes;
-using Appalachia.Core.Globals.Timing;
+using Appalachia.Editing.Attributes;
+using Appalachia.Globals.Timing;
 using Sirenix.OdinInspector;
 
-namespace Appalachia.Core.Crafting
+namespace Appalachia.KOC.Crafting
 {
     [Serializable]
     public class CraftingRecipeElementOption

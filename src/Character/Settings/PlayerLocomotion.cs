@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Appalachia.Core.Character.Settings
+namespace Appalachia.KOC.Character.Settings
 {
     [Serializable]
     public struct PlayerLocomotion : IEquatable<PlayerLocomotion>

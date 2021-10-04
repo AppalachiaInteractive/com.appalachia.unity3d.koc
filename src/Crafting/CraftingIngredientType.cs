@@ -1,4 +1,4 @@
-namespace Appalachia.Core.Crafting
+namespace Appalachia.KOC.Crafting
 {
     /// <summary>
     /// Different ingredient types.

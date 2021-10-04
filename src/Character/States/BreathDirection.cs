@@ -1,6 +1,6 @@
 using System;
 
-namespace Appalachia.Core.Character.States
+namespace Appalachia.KOC.Character.States
 {
     [Serializable]
     public enum BreathDirection : short

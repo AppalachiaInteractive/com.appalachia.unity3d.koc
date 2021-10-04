@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Appalachia.Core.Character
+namespace Appalachia.KOC.Character
 {
     public static class BOTDPlayerInputMappingExtensions
     {

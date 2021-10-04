@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Appalachia.Core.Crafting.Base;
-using Appalachia.Core.Crafting.Utility;
+using Appalachia.KOC.Crafting.Base;
+using Appalachia.KOC.Crafting.Utility;
 using Sirenix.OdinInspector;
 using UnityEditor;
 
-namespace Appalachia.Core.Crafting
+namespace Appalachia.KOC.Crafting
 {
     [Serializable]
     public class Craftable : CraftingIconComponent<Craftable> 

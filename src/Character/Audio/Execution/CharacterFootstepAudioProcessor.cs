@@ -1,15 +1,14 @@
 #region
 
 using System;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context.Contexts;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Sounds.Character;
-using Appalachia.Core.Audio;
-using Appalachia.Core.Audio.Components;
+using Appalachia.Audio.Components;
+using Appalachia.Audio.Contextual.Context.Contexts;
+using Appalachia.KOC.Character.Audio.Sounds;
 using UnityEngine;
 
 #endregion
 
-namespace Appalachia.Core.AssetMetadata.AudioMetadata.Execution
+namespace Appalachia.KOC.Character.Audio.Execution
 {
     [Serializable]
     public class CharacterFootstepAudioProcessor : CharacterAudioExecutionProcessor<FootstepSounds, AudioContext3, AudioContextParameters3>

@@ -1,10 +1,10 @@
 using Appalachia.Core.Extensions;
-using Appalachia.Core.Solvers;
+using Appalachia.Simulation.Physical.Solvers;
 using Appalachia.Utility.Interpolation.Interpolators;
 using Appalachia.Utility.Interpolation.Modes;
 using UnityEngine;
 
-namespace Appalachia.Core.Gameplay {
+namespace Appalachia.KOC.Gameplay {
 
 [DisallowMultipleComponent]
 public class FirstPersonCamera : PlayerCamera {

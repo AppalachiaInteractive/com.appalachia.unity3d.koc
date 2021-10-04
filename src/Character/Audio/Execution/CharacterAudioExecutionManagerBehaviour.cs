@@ -1,9 +1,9 @@
-using Appalachia.Core.AssetMetadata.AudioMetadata.Context.Contexts;
-using Appalachia.Core.AssetMetadata.AudioMetadata.Sounds.Character;
-using Appalachia.Core.Character;
+using Appalachia.Audio.Contextual.Context.Contexts;
+using Appalachia.Audio.Contextual.Execution;
+using Appalachia.KOC.Character.Audio.Sounds;
 using UnityEngine;
 
-namespace Appalachia.Core.AssetMetadata.AudioMetadata.Execution
+namespace Appalachia.KOC.Character.Audio.Execution
 {
     [DisallowMultipleComponent]
     public class CharacterAudioExecutionManagerBehaviour : AudioExecutionManagerSingletonBehaviour<CharacterAudioExecutionManagerBehaviour>

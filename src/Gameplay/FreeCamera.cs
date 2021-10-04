@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Appalachia.Core.Gameplay.Inputs;
+using Appalachia.KOC.Gameplay.Inputs;
 using UnityEngine;
 
-namespace Appalachia.Core.Gameplay
+namespace Appalachia.KOC.Gameplay
 {
     [ExecuteAlways]
     public class FreeCamera : MonoBehaviour

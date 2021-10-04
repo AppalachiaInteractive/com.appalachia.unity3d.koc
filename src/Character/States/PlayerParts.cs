@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Appalachia.Core.Character.States
+namespace Appalachia.KOC.Character.States
 {
     [Serializable]
     public struct PlayerParts : IEquatable<PlayerParts>

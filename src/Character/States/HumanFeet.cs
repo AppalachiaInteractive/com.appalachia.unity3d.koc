@@ -1,6 +1,6 @@
 using System;
 
-namespace Appalachia.Core.Character.States
+namespace Appalachia.KOC.Character.States
 {
     [Flags]
     public enum HumanFeet : byte

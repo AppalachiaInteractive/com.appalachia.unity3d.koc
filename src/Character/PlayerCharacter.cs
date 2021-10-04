@@ -1,9 +1,9 @@
-using Appalachia.Core.Character.Settings;
-using Appalachia.Core.Character.States;
 using Appalachia.Core.Extensions;
+using Appalachia.KOC.Character.Settings;
+using Appalachia.KOC.Character.States;
 using UnityEngine;
 
-namespace Appalachia.Core.Character
+namespace Appalachia.KOC.Character
 {
     [DisallowMultipleComponent]
     public class PlayerCharacter : MonoBehaviour

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Appalachia.Core.Character
+namespace Appalachia.KOC.Character
 {
     public class BOTDPlayerInputMappingAttribute : Attribute
     {

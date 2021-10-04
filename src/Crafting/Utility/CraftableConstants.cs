@@ -1,4 +1,4 @@
-namespace Appalachia.Core.Crafting.Utility
+namespace Appalachia.KOC.Crafting.Utility
 {
     public class CraftableConstants
     {

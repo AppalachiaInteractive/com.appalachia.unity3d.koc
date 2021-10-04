@@ -1,7 +1,7 @@
 using System;
-using Appalachia.Core.Scriptables;
+using Appalachia.Base.Scriptables;
 
-namespace Appalachia.Core.Crafting.Base
+namespace Appalachia.KOC.Crafting.Base
 {
     [Serializable]
     public abstract class CraftingComponent<T> : SelfNamingSavingAndIdentifyingScriptableObject<T>

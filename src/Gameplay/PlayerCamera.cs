@@ -1,4 +1,4 @@
-using Appalachia.PostProcessing.AutoFocus;
+using Appalachia.Rendering.PostProcessing.AutoFocus;
 using UnityEngine;
 
 namespace Appalachia.KOC.Gameplay

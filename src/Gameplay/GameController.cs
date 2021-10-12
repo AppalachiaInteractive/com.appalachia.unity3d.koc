@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
-using Appalachia.Base.Behaviours;
+using Appalachia.Core.Behaviours;
 using Appalachia.KOC.Character;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace Appalachia.KOC.Gameplay
 {
-    public class GameController : InternalMonoBehaviour
+    public class GameController : AppalachiaMonoBehaviour
     {
         public delegate void AudioTransformsUpdater(Transform root, Transform eye);
 

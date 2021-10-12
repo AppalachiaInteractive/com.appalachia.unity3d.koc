@@ -1,10 +1,10 @@
 using System;
-using Appalachia.Base.Behaviours;
+using Appalachia.Core.Behaviours;
 using UnityEngine;
 
 namespace Appalachia.KOC.Gameplay
 {
-    public class CameraRumble : InternalMonoBehaviour
+    public class CameraRumble : AppalachiaMonoBehaviour
     {
         public RumbleInfo outerDisplacement = new()
         {

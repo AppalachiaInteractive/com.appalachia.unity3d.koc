@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Appalachia.Editing.Assets;
+using Appalachia.Core.Assets;
 using Appalachia.KOC.Crafting.Base;
 using Appalachia.KOC.Crafting.Utility;
 using Sirenix.OdinInspector;
@@ -41,7 +41,7 @@ namespace Appalachia.KOC.Crafting
                 _categories = new List<CraftingMaterialCategory>();
             }
 
-            var categories = AssetDatabaseHelper.FindAssets<CraftingMaterialCategory>();
+            var categories = AssetDatabaseManager.FindAssets<CraftingMaterialCategory>();
 
             _categories = categories.Where(c => c.materials.Contains(this)).ToList();
         }

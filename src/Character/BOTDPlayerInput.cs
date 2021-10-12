@@ -39,7 +39,7 @@ namespace Appalachia.KOC.Character
             BOTDPlayerInputMapping? @override = null,
             bool force = false)
         {
-            var selected = mapping;
+            BOTDPlayerInputMapping selected;
 
             if (@override.HasValue)
             {

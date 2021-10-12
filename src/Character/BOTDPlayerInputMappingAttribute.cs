@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Appalachia.Utility.Reflection.Extensions;
 
 namespace Appalachia.KOC.Character
 {
@@ -15,10 +15,16 @@ namespace Appalachia.KOC.Character
 
         public static IEnumerable<Type> GetTypes()
         {
-            return from a in AppDomain.CurrentDomain.GetAssemblies()
-                   from t in a.GetTypes()
-                   where t.IsDefined(typeof(BOTDPlayerInputMappingAttribute), false)
-                   select t;
+            var types = ReflectionExtensions.GetAllTypes();
+            for (var i = 0; i < types.Length; i++)
+            {
+                var type = types[i];
+                
+                if (type.IsDefined(typeof(BOTDPlayerInputMappingAttribute), false))
+                {
+                    yield return type;
+                }
+            }
         }
     }
 }

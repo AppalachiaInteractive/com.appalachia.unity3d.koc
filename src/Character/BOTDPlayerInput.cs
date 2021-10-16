@@ -19,7 +19,7 @@ namespace Appalachia.KOC.Character
 
             foreach (var type in BOTDPlayerInputMappingAttribute.GetTypes())
             {
-                var mapping = Activator.CreateInstance(type) as IBOTDPlayerInputMapping;
+                var m = Activator.CreateInstance(type) as IBOTDPlayerInputMapping;
 
                 for (var index = 0;
                     index <
@@ -30,7 +30,7 @@ namespace Appalachia.KOC.Character
                         typeof(BOTDPlayerInputMappingAttribute),
                         false
                     )[index];
-                    _mappings[((BOTDPlayerInputMappingAttribute) attribute).index] = mapping;
+                    _mappings[((BOTDPlayerInputMappingAttribute) attribute).index] = m;
                 }
             }
         }

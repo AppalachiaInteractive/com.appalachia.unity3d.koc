@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Appalachia.Core.Assets;
+using Appalachia.CI.Integration.Assets;
 using Appalachia.KOC.Crafting.Base;
 using Appalachia.KOC.Crafting.Utility;
 using Sirenix.OdinInspector;

@@ -50,7 +50,7 @@ namespace Appalachia.KOC.Gameplay
 
         public override void Simulate(Vector3 playerPosition, Vector3 playerAngles, float deltaTime)
         {
-            var transform = this.transform;
+            var t = this.transform;
             var interpolationDeltaTime = deltaTime * interpolationSpeed;
 
             _pitch.Update(interpolationDeltaTime);
@@ -95,8 +95,8 @@ namespace Appalachia.KOC.Gameplay
             position -= Quaternion.Euler(angles) *
                         (new Vector3(0f, dy, dz) + new Vector3(ex, 0f, ez));
 
-            transform.localPosition = position;
-            transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+            t.localPosition = position;
+            t.localRotation = Quaternion.Euler(pitch, yaw, roll);
         }
 
         public override void Warp(Vector3 position, Vector3 angles)

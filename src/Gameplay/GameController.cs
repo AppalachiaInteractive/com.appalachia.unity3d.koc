@@ -124,8 +124,8 @@ namespace Appalachia.KOC.Gameplay
                 }
             }
 
-            var camera = spawnPoint.camera ? spawnPoint.camera : defaultCamera;
-            var cameraTransform = camera.transform;
+            var cam = spawnPoint.camera ? spawnPoint.camera : defaultCamera;
+            var cameraTransform = cam.transform;
             cameraTransform.parent = playerCamera.eyeTransform
                 ? playerCamera.eyeTransform
                 : playerCamera.transform;
@@ -134,12 +134,12 @@ namespace Appalachia.KOC.Gameplay
             cameraTransform.localRotation = Quaternion.identity;
             cameraTransform.localScale = Vector3.one;
 
-            playerCamera.camera = camera;
+            playerCamera.camera = cam;
             playerController.playerCamera = playerCamera;
 
             if (audioTransformsUpdater != null)
             {
-                audioTransformsUpdater(playerController.transform, camera.transform);
+                audioTransformsUpdater(playerController.transform, cam.transform);
             }
 
             spawnPoint.Spawn(playerController, reset);

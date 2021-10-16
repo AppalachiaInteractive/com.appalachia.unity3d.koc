@@ -27,7 +27,7 @@ namespace Appalachia.KOC.Gameplay
 
         protected void Update()
         {
-            var transform = this.transform;
+            var t = this.transform;
 
             BOTDPlayerInput.Update(out var input);
 
@@ -54,9 +54,9 @@ namespace Appalachia.KOC.Gameplay
                 firstPersonCamera.yaw = yaw;
             }
 
-            var transform = this.transform;
-            var position = transform.localPosition;
-            var rotation = transform.localEulerAngles;
+            var t = this.transform;
+            var position = t.localPosition;
+            var rotation = t.localEulerAngles;
             var deltaTime = Time.deltaTime;
 
             playerCamera.Simulate(position, rotation, deltaTime);

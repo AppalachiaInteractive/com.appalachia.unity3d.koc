@@ -1,5 +1,5 @@
 using System;
-using Appalachia.Core.Assets;
+using Appalachia.CI.Integration.Assets;
 using Appalachia.KOC.Crafting.Base;
 using Appalachia.KOC.Crafting.Utility;
 using UnityEditor;

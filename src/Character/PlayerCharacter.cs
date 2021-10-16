@@ -49,7 +49,7 @@ namespace Appalachia.KOC.Character
 
         public void Simulate(CharacterController characterController, BOTDPlayerInput input)
         {
-            var transform = this.transform;
+            var t = this.transform;
             var deltaTime = Time.deltaTime;
 
             state.movement.jumping = !characterController.isGrounded;
@@ -119,8 +119,8 @@ namespace Appalachia.KOC.Character
                 )
             );
 
-            UpdateLooking(transform, deltaTime);
-            UpdateMoving(transform, deltaTime, characterController);
+            UpdateLooking(t, deltaTime);
+            UpdateMoving(t, deltaTime, characterController);
 
             var walkSpeedSqr = settings.locomotion.walkSpeed * settings.locomotion.walkSpeed;
             var runSpeedSqr = settings.locomotion.runSpeed * settings.locomotion.runSpeed;
@@ -141,7 +141,7 @@ namespace Appalachia.KOC.Character
                 state.movement.jumpSpeedScalar = state.movement.speedScalar;
             }
 
-            UpdateFootPlanting(transform, speedSqr);
+            UpdateFootPlanting(t, speedSqr);
 
             if (state.movement.jumpStart)
             {

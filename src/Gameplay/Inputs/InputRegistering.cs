@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Appalachia.CI.Integration.Assets;
 using UnityEditor;
 
 namespace Appalachia.KOC.Gameplay.Inputs
@@ -54,7 +55,7 @@ namespace Appalachia.KOC.Gameplay.Inputs
         public static void RegisterInputs(List<InputManagerEntry> entries)
         {
             // Grab reference to input manager
-            var assets = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset");
+            var assets = AssetDatabaseManager.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset");
 
             // Temporary fix. This happens some time with HDRP init when it's called before asset database is initialized (probably related to package load order).
             if (assets.Length == 0)

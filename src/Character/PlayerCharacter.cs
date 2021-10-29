@@ -8,9 +8,19 @@ namespace Appalachia.KOC.Character
     [DisallowMultipleComponent]
     public class PlayerCharacter : MonoBehaviour
     {
+        public PlayerParts parts;
         public PlayerSettings settings;
         public PlayerState state;
-        public PlayerParts parts;
+        public event PlayerCharacterEvent OnJump;
+        public event PlayerCharacterEvent OnLand;
+
+        public event PlayerCharacterEvent OnStep;
+
+        public void GetLookPitchAndYaw(out float pitch, out float yaw)
+        {
+            pitch = state.looking.lookingAngles.x;
+            yaw = state.looking.lookingAngles.y;
+        }
 
         public void OnSpawn(Vector3 angles, bool reset, CharacterController characterController)
         {
@@ -41,15 +51,9 @@ namespace Appalachia.KOC.Character
             UpdateMoving(transform, 0.1f, characterController);
         }
 
-        public void GetLookPitchAndYaw(out float pitch, out float yaw)
-        {
-            pitch = state.looking.lookingAngles.x;
-            yaw = state.looking.lookingAngles.y;
-        }
-
         public void Simulate(CharacterController characterController, BOTDPlayerInput input)
         {
-            var t = this.transform;
+            var t = transform;
             var deltaTime = Time.deltaTime;
 
             state.movement.jumping = !characterController.isGrounded;
@@ -71,11 +75,7 @@ namespace Appalachia.KOC.Character
             var signMove = new Vector2(Mathf.Sign(input.move.x), Mathf.Sign(input.move.y));
 
             var wantSpeed = Vector2.one;
-            wantSpeed *= Mathf.Lerp(
-                settings.locomotion.walkSpeed,
-                settings.locomotion.runSpeed,
-                input.run
-            );
+            wantSpeed *= Mathf.Lerp(settings.locomotion.walkSpeed, settings.locomotion.runSpeed, input.run);
             wantSpeed = Vector2.Scale(wantSpeed, signMove);
             wantSpeed = Vector2.Lerp(
                 state.movement.movingSpeed,
@@ -153,21 +153,25 @@ namespace Appalachia.KOC.Character
             }
         }
 
-        private void UpdateLooking(Transform transform, float deltaTime)
+        private bool FindFootPlacement(ref FootPlacementState footState)
         {
-            transform.localRotation = Quaternion.Euler(0f, state.looking.lookingAngles.y, 0f);
-        }
+            if (Physics.Raycast(
+                footState.position + Vector3.up,
+                Vector3.down,
+                out var hit,
+                2f,
+                settings.footPlanting.floorLayers
+            ))
+            {
+                footState.position = hit.point;
+                footState.lastPlantedPosition = hit.point;
+                footState.normal = hit.normal;
+                footState.physicalMaterial = hit.collider.sharedMaterial;
+                footState.audioStale = true;
+                return true;
+            }
 
-        private void UpdateMoving(
-            Transform transform,
-            float deltaTime,
-            CharacterController characterController)
-        {
-            var moveVector = state.movement.jumpingScalar * Physics.gravity;
-            moveVector.x += state.movement.movingSpeed.x;
-            moveVector.z += state.movement.movingSpeed.y;
-
-            characterController.Move(transform.TransformVector(moveVector * deltaTime));
+            return false;
         }
 
         private void UpdateFootPlanting(Transform transform, float speedSqr)
@@ -185,18 +189,16 @@ namespace Appalachia.KOC.Character
             state.positioning.leftFoot.position = parts.leftFoot.position;
             state.positioning.rightFoot.position = parts.rightFoot.position;
 
-            var walkStepSqr = settings.footPlanting.walkStepDistance *
-                              settings.footPlanting.walkStepDistance;
-            var runStepSqr = settings.footPlanting.runStepDistance *
-                             settings.footPlanting.runStepDistance;
+            var walkStepSqr = settings.footPlanting.walkStepDistance * settings.footPlanting.walkStepDistance;
+            var runStepSqr = settings.footPlanting.runStepDistance * settings.footPlanting.runStepDistance;
             var needStepSqr = Mathf.Lerp(walkStepSqr, runStepSqr, state.movement.speedScalar);
 
             var leftStepSqr =
-                (state.positioning.leftFoot.position -
-                 state.positioning.leftFoot.lastPlantedPosition).sqrMagnitude;
+                (state.positioning.leftFoot.position - state.positioning.leftFoot.lastPlantedPosition)
+               .sqrMagnitude;
             var rightStepSqr =
-                (state.positioning.rightFoot.position -
-                 state.positioning.rightFoot.lastPlantedPosition).sqrMagnitude;
+                (state.positioning.rightFoot.position - state.positioning.rightFoot.lastPlantedPosition)
+               .sqrMagnitude;
 
             var shouldStepLeft = leftStepSqr >= needStepSqr;
             var shouldStepRight = rightStepSqr >= needStepSqr;
@@ -277,30 +279,22 @@ namespace Appalachia.KOC.Character
             }*/
         }
 
-        private bool FindFootPlacement(ref FootPlacementState footState)
+        private void UpdateLooking(Transform transform, float deltaTime)
         {
-            if (Physics.Raycast(
-                footState.position + Vector3.up,
-                Vector3.down,
-                out var hit,
-                2f,
-                settings.footPlanting.floorLayers
-            ))
-            {
-                footState.position = hit.point;
-                footState.lastPlantedPosition = hit.point;
-                footState.normal = hit.normal;
-                footState.physicalMaterial = hit.collider.sharedMaterial;
-                footState.audioStale = true;
-                return true;
-            }
-
-            return false;
+            transform.localRotation = Quaternion.Euler(0f, state.looking.lookingAngles.y, 0f);
         }
 
-        public event PlayerCharacterEvent OnStep;
-        public event PlayerCharacterEvent OnJump;
-        public event PlayerCharacterEvent OnLand;
+        private void UpdateMoving(
+            Transform transform,
+            float deltaTime,
+            CharacterController characterController)
+        {
+            var moveVector = state.movement.jumpingScalar * Physics.gravity;
+            moveVector.x += state.movement.movingSpeed.x;
+            moveVector.z += state.movement.movingSpeed.y;
+
+            characterController.Move(transform.TransformVector(moveVector * deltaTime));
+        }
 
 #pragma warning disable 67
         public event PlayerCharacterEvent OnVocalize_Start;

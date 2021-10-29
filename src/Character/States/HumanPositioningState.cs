@@ -13,12 +13,12 @@ namespace Appalachia.KOC.Character.States
         [SerializeField] public HumanFeet feetPlanted;
 
         [SerializeField] public Vector3 lastVegetationPosition;
-
-        public bool hasNoFeetPlanted => feetPlanted == HumanFeet.Neither;
         public bool hasAnyFootPlanted => feetPlanted != HumanFeet.Neither;
         public bool hasBothFeetPlanted => feetPlanted == HumanFeet.Both;
 
-#region IEquatable
+        public bool hasNoFeetPlanted => feetPlanted == HumanFeet.Neither;
+
+        #region IEquatable
 
         public bool Equals(HumanPositioningState other)
         {
@@ -55,6 +55,6 @@ namespace Appalachia.KOC.Character.States
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

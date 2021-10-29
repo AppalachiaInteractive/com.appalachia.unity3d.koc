@@ -7,12 +7,6 @@ namespace Appalachia.KOC.Character.Settings
     [Serializable]
     public struct PlayerFootPlanting : IEquatable<PlayerFootPlanting>
     {
-        public LayerMask floorLayers;
-
-        [PropertyRange(0, 10f)]
-        [Tooltip("[0, 10]")]
-        public float walkStepDistance;
-
         [PropertyRange(0, 10f)]
         [Tooltip("[0, 10]")]
         public float runStepDistance;
@@ -21,7 +15,13 @@ namespace Appalachia.KOC.Character.Settings
         [Tooltip("[0, 10]")]
         public float stopSpeedThreshold;
 
-#region IEquatable
+        [PropertyRange(0, 10f)]
+        [Tooltip("[0, 10]")]
+        public float walkStepDistance;
+
+        public LayerMask floorLayers;
+
+        #region IEquatable
 
         public bool Equals(PlayerFootPlanting other)
         {
@@ -58,6 +58,6 @@ namespace Appalachia.KOC.Character.Settings
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

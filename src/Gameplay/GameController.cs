@@ -13,36 +13,19 @@ namespace Appalachia.KOC.Gameplay
     {
         public delegate void AudioTransformsUpdater(Transform root, Transform eye);
 
-        public SpawnPoint startPoint;
+        public AudioTransformsUpdater audioTransformsUpdater;
+        public PlayerCamera playerCameraPrefab;
 
         public PlayerController playerPrefab;
-        public PlayerCamera playerCameraPrefab;
-        public AudioTransformsUpdater audioTransformsUpdater;
-        public SpawnPoint lastPlayerSpawnPoint { get; private set; }
 
-        public PlayerController playerController { get; set; }
-        public PlayerCamera playerCamera { get; set; }
+        public SpawnPoint startPoint;
         public Camera defaultCamera { get; set; }
 
         public Object debugContext { get; set; }
+        public PlayerCamera playerCamera { get; set; }
 
-        protected void Start()
-        {
-            defaultCamera = Camera.main;
-
-            var cameraTransform = defaultCamera.transform;
-            cameraTransform.localPosition = Vector3.zero;
-            cameraTransform.localRotation = Quaternion.identity;
-            cameraTransform.localScale = Vector3.one;
-
-            BOTDPlayerInput.SelectInputMapping();
-        }
-
-        public static GameController FindGameController()
-        {
-            return GameObject.FindGameObjectWithTag("GameController")
-                             .GetComponent<GameController>();
-        }
+        public PlayerController playerController { get; set; }
+        public SpawnPoint lastPlayerSpawnPoint { get; private set; }
 
         public void DespawnPlayer()
         {
@@ -62,13 +45,7 @@ namespace Appalachia.KOC.Gameplay
 
         public SpawnPoint[] GetAllSpawnPoints()
         {
-            return (from a in GameAgent.GetAgents() where a is SpawnPoint select a as SpawnPoint)
-               .ToArray();
-        }
-
-        public SpawnPoint GetSpawnPoint(string name)
-        {
-            return SpawnPoint.Find(name);
+            return (from a in GameAgent.GetAgents() where a is SpawnPoint select a as SpawnPoint).ToArray();
         }
 
         public SpawnPoint GetNextPlayerSpawnPoint()
@@ -79,6 +56,11 @@ namespace Appalachia.KOC.Gameplay
             return spawnPoints[(index + 1) % spawnPoints.Length];
         }
 
+        public SpawnPoint GetSpawnPoint(string name)
+        {
+            return SpawnPoint.Find(name);
+        }
+
         public void SpawnPlayer(bool reset = true, bool nextFrame = true)
         {
             SpawnPlayer(startPoint, reset, nextFrame);
@@ -87,6 +69,18 @@ namespace Appalachia.KOC.Gameplay
         public void SpawnPlayer(SpawnPoint spawnPoint, bool reset = true, bool nextFrame = true)
         {
             StartCoroutine(SpawnPlayerCo(spawnPoint, reset, nextFrame));
+        }
+
+        protected void Start()
+        {
+            defaultCamera = Camera.main;
+
+            var cameraTransform = defaultCamera.transform;
+            cameraTransform.localPosition = Vector3.zero;
+            cameraTransform.localRotation = Quaternion.identity;
+            cameraTransform.localScale = Vector3.one;
+
+            BOTDPlayerInput.SelectInputMapping();
         }
 
         private IEnumerator SpawnPlayerCo(SpawnPoint spawnPoint, bool reset, bool nextFrame)
@@ -153,6 +147,11 @@ namespace Appalachia.KOC.Gameplay
             }
 
             Profiler.EndSample();
+        }
+
+        public static GameController FindGameController()
+        {
+            return GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         }
     }
 } // Gameplay

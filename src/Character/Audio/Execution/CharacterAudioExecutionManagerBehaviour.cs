@@ -9,26 +9,14 @@ namespace Appalachia.KOC.Character.Audio.Execution
     public class CharacterAudioExecutionManagerBehaviour : AudioExecutionManagerSingletonBehaviour<
         CharacterAudioExecutionManagerBehaviour>
     {
-        [SerializeField] public PlayerCharacter player;
         [SerializeField] public CharacterBreathingAudioProcessor breathing;
         [SerializeField] public CharacterFootstepAudioProcessor footsteps;
+        [SerializeField] public PlayerCharacter player;
 
-        private void Update()
+        private void OnDie(PlayerCharacter pc)
         {
-            if (breathing == null)
-            {
-                breathing = new CharacterBreathingAudioProcessor();
-            }
-
-            if (footsteps == null)
-            {
-                footsteps = new CharacterFootstepAudioProcessor();
-            }
-
-            HandleExecution<CharacterBreathingAudioProcessor, HumanBreathingSounds, AudioContext3,
-                AudioContextParameters3>(this, breathing);
-            HandleExecution<CharacterFootstepAudioProcessor, FootstepSounds, AudioContext3,
-                AudioContextParameters3>(this, footsteps);
+            breathing.OnDie(pc, this);
+            footsteps.OnDie(pc, this);
         }
 
         private void OnEnable()
@@ -49,6 +37,42 @@ namespace Appalachia.KOC.Character.Audio.Execution
             player.OnSleeping_Start += OnSleeping_Start;
             player.OnSleeping_End += OnSleeping_End;
             player.OnDie += OnDie;
+        }
+
+        private void OnInWater_End(PlayerCharacter pc)
+        {
+            breathing.OnInWater_End(pc, this);
+            footsteps.OnInWater_End(pc, this);
+        }
+
+        private void OnInWater_Start(PlayerCharacter pc)
+        {
+            breathing.OnInWater_Start(pc, this);
+            footsteps.OnInWater_Start(pc, this);
+        }
+
+        private void OnJump(PlayerCharacter pc)
+        {
+            breathing.OnJump(pc, this);
+            footsteps.OnJump(pc, this);
+        }
+
+        private void OnLand(PlayerCharacter pc)
+        {
+            breathing.OnLand(pc, this);
+            footsteps.OnLand(pc, this);
+        }
+
+        private void OnSleeping_End(PlayerCharacter pc)
+        {
+            breathing.OnSleeping_End(pc, this);
+            footsteps.OnSleeping_End(pc, this);
+        }
+
+        private void OnSleeping_Start(PlayerCharacter pc)
+        {
+            breathing.OnSleeping_Start(pc, this);
+            footsteps.OnSleeping_Start(pc, this);
         }
 
         /*
@@ -191,40 +215,10 @@ namespace Appalachia.KOC.Character.Audio.Execution
             footsteps.OnStep(pc, this);
         }
 
-        private void OnJump(PlayerCharacter pc)
+        private void OnSwimming_End(PlayerCharacter pc)
         {
-            breathing.OnJump(pc, this);
-            footsteps.OnJump(pc, this);
-        }
-
-        private void OnLand(PlayerCharacter pc)
-        {
-            breathing.OnLand(pc, this);
-            footsteps.OnLand(pc, this);
-        }
-
-        private void OnVocalize_Start(PlayerCharacter pc)
-        {
-            breathing.OnVocalize_Start(pc, this);
-            footsteps.OnVocalize_Start(pc, this);
-        }
-
-        private void OnVocalize_End(PlayerCharacter pc)
-        {
-            breathing.OnVocalize_End(pc, this);
-            footsteps.OnVocalize_End(pc, this);
-        }
-
-        private void OnInWater_Start(PlayerCharacter pc)
-        {
-            breathing.OnInWater_Start(pc, this);
-            footsteps.OnInWater_Start(pc, this);
-        }
-
-        private void OnInWater_End(PlayerCharacter pc)
-        {
-            breathing.OnInWater_End(pc, this);
-            footsteps.OnInWater_End(pc, this);
+            breathing.OnSwimming_End(pc, this);
+            footsteps.OnSwimming_End(pc, this);
         }
 
         private void OnSwimming_Start(PlayerCharacter pc)
@@ -233,10 +227,10 @@ namespace Appalachia.KOC.Character.Audio.Execution
             footsteps.OnSwimming_Start(pc, this);
         }
 
-        private void OnSwimming_End(PlayerCharacter pc)
+        private void OnUnderWater_End(PlayerCharacter pc)
         {
-            breathing.OnSwimming_End(pc, this);
-            footsteps.OnSwimming_End(pc, this);
+            breathing.OnUnderWater_End(pc, this);
+            footsteps.OnUnderWater_End(pc, this);
         }
 
         private void OnUnderWater_Start(PlayerCharacter pc)
@@ -245,28 +239,34 @@ namespace Appalachia.KOC.Character.Audio.Execution
             footsteps.OnUnderWater_Start(pc, this);
         }
 
-        private void OnUnderWater_End(PlayerCharacter pc)
+        private void OnVocalize_End(PlayerCharacter pc)
         {
-            breathing.OnUnderWater_End(pc, this);
-            footsteps.OnUnderWater_End(pc, this);
+            breathing.OnVocalize_End(pc, this);
+            footsteps.OnVocalize_End(pc, this);
         }
 
-        private void OnSleeping_Start(PlayerCharacter pc)
+        private void OnVocalize_Start(PlayerCharacter pc)
         {
-            breathing.OnSleeping_Start(pc, this);
-            footsteps.OnSleeping_Start(pc, this);
+            breathing.OnVocalize_Start(pc, this);
+            footsteps.OnVocalize_Start(pc, this);
         }
 
-        private void OnSleeping_End(PlayerCharacter pc)
+        private void Update()
         {
-            breathing.OnSleeping_End(pc, this);
-            footsteps.OnSleeping_End(pc, this);
-        }
+            if (breathing == null)
+            {
+                breathing = new CharacterBreathingAudioProcessor();
+            }
 
-        private void OnDie(PlayerCharacter pc)
-        {
-            breathing.OnDie(pc, this);
-            footsteps.OnDie(pc, this);
+            if (footsteps == null)
+            {
+                footsteps = new CharacterFootstepAudioProcessor();
+            }
+
+            HandleExecution<CharacterBreathingAudioProcessor, HumanBreathingSounds, AudioContext3,
+                AudioContextParameters3>(this, breathing);
+            HandleExecution<CharacterFootstepAudioProcessor, FootstepSounds, AudioContext3,
+                AudioContextParameters3>(this, footsteps);
         }
     }
 }

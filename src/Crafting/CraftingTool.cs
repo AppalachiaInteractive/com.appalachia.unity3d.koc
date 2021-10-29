@@ -1,7 +1,7 @@
 using System;
+using Appalachia.CI.Constants;
 using Appalachia.CI.Integration.Assets;
 using Appalachia.KOC.Crafting.Base;
-using Appalachia.KOC.Crafting.Utility;
 using UnityEditor;
 
 namespace Appalachia.KOC.Crafting
@@ -9,10 +9,11 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class CraftingTool : CraftingIconComponent<CraftingTool>
     {
-        [MenuItem(CraftableConstants.TOOL_MENU, false, CraftableConstants.TOOL_PRIORITY)]
+        [UnityEditor.MenuItem(PKG.Menu.Appalachia.Components.Tool.Base, false, 
+            PKG.Menu.Appalachia.Components.Tool.Priority)]
         private static void MENU_CREATE()
         {
-            var created = CreateNew();            
+            var created = CreateNew();
             AssetDatabaseManager.SetSelection(created);
         }
     }

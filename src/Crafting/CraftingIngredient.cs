@@ -9,6 +9,10 @@ namespace Appalachia.KOC.Crafting
     public class CraftingIngredient
     {
         [SmartLabel]
+        [HideIf(nameof(_showMaterial))]
+        public CraftedItem item;
+
+        [SmartLabel]
         [EnumToggleButtons]
         public CraftingIngredientType ingredientType;
 
@@ -22,24 +26,20 @@ namespace Appalachia.KOC.Crafting
 
         [SmartLabel]
         [HideIf(nameof(_showMaterial))]
-        public CraftedItem item;
-
-        [SmartLabel]
-        [HideIf(nameof(_showMaterial))]
         public int itemCount = 1;
 
         private bool _showMaterial => ingredientType == CraftingIngredientType.MaterialCategory;
 
         [ButtonGroup]
-        public void NewMaterialCategory()
-        {
-            material = CraftingMaterialCategory.CreateNew();
-        }
-
-        [ButtonGroup]
         public void NewCraftedItem()
         {
             item = CraftedItem.CreateNew();
+        }
+
+        [ButtonGroup]
+        public void NewMaterialCategory()
+        {
+            material = CraftingMaterialCategory.CreateNew();
         }
     }
 }

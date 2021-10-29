@@ -6,12 +6,12 @@ namespace Appalachia.KOC.Character.States
     [Serializable]
     public struct PlayerState : IEquatable<PlayerState>
     {
+        [SerializeField] public BreathingState breathing;
+        [SerializeField] public HumanMovementState movement;
         [SerializeField] public HumanPositioningState positioning;
         [SerializeField] public LookingState looking;
-        [SerializeField] public HumanMovementState movement;
-        [SerializeField] public BreathingState breathing;
 
-#region IEquatable
+        #region IEquatable
 
         public bool Equals(PlayerState other)
         {
@@ -46,6 +46,6 @@ namespace Appalachia.KOC.Character.States
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

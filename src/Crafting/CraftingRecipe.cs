@@ -7,12 +7,12 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class CraftingRecipe
     {
-        public List<CraftingRecipeElement> elements;
-
         public CraftingRecipe()
         {
             elements = new List<CraftingRecipeElement>();
         }
+
+        public List<CraftingRecipeElement> elements;
 
         [ButtonGroup]
         public void NewElement()

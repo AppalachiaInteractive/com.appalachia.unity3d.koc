@@ -6,15 +6,15 @@ namespace Appalachia.KOC.Character.States
     [Serializable]
     public struct HumanMovementState : IEquatable<HumanMovementState>
     {
-        [SerializeField] public Vector2 movingSpeed;
-        [SerializeField] public float speedScalar;
-        [SerializeField] public float jumpSpeedScalar;
-        [SerializeField] public float jumpingScalar;
-        [SerializeField] public bool swimming;
         [SerializeField] public bool jumping;
         [SerializeField] public bool jumpStart;
+        [SerializeField] public bool swimming;
+        [SerializeField] public float jumpingScalar;
+        [SerializeField] public float jumpSpeedScalar;
+        [SerializeField] public float speedScalar;
+        [SerializeField] public Vector2 movingSpeed;
 
-#region IEquatable
+        #region IEquatable
 
         public bool Equals(HumanMovementState other)
         {
@@ -57,6 +57,6 @@ namespace Appalachia.KOC.Character.States
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

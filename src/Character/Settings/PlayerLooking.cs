@@ -11,19 +11,19 @@ namespace Appalachia.KOC.Character.Settings
         [Tooltip("[0.1, 2]")]
         public float lookSpeed;
 
-        [PropertyRange(0.1f, 2f)]
-        [Tooltip("[0.1, 2]")]
-        public float runLookSpeed;
+        [PropertyRange(-360f, 360f)]
+        [Tooltip("[-360, 360]")]
+        public float pitchLimitMax;
 
         [PropertyRange(-360f, 360f)]
         [Tooltip("[-360, 360]")]
         public float pitchLimitMin;
 
-        [PropertyRange(-360f, 360f)]
-        [Tooltip("[-360, 360]")]
-        public float pitchLimitMax;
+        [PropertyRange(0.1f, 2f)]
+        [Tooltip("[0.1, 2]")]
+        public float runLookSpeed;
 
-#region IEquatable
+        #region IEquatable
 
         public bool Equals(PlayerLooking other)
         {
@@ -60,6 +60,6 @@ namespace Appalachia.KOC.Character.Settings
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

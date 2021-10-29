@@ -6,10 +6,32 @@ namespace Appalachia.KOC.Gameplay
 {
     public abstract class GameAgent : MonoBehaviour
     {
-        private static readonly HashSet<GameAgent> agents = new();
         private static readonly Dictionary<string, GameAgent> lookup = new();
+        private static readonly HashSet<GameAgent> agents = new();
 
         public string agentIdentifier;
+
+        public virtual void OnAfterSpawnPlayer(SpawnPoint point, bool reset)
+        {
+        }
+
+        public virtual void OnBeforeSpawnPlayer(bool reset)
+        {
+        }
+
+        public virtual void OnSpawn(SpawnPoint spawnPoint, bool reset)
+        {
+        }
+
+        public override string ToString()
+        {
+            if (!string.IsNullOrEmpty(agentIdentifier))
+            {
+                return string.Format("{0} '{1}'", base.ToString(), agentIdentifier);
+            }
+
+            return base.ToString();
+        }
 
         protected void Awake()
         {
@@ -45,16 +67,6 @@ namespace Appalachia.KOC.Gameplay
             }
         }
 
-        public static IEnumerable<GameAgent> GetAgents()
-        {
-            return agents;
-        }
-
-        public static HashSet<GameAgent>.Enumerator GetEnumerator()
-        {
-            return agents.GetEnumerator();
-        }
-
         public static GameAgent Find(string id)
         {
             GameAgent agent = null;
@@ -84,26 +96,14 @@ namespace Appalachia.KOC.Gameplay
             return (T) Find(id);
         }
 
-        public virtual void OnBeforeSpawnPlayer(bool reset)
+        public static IEnumerable<GameAgent> GetAgents()
         {
+            return agents;
         }
 
-        public virtual void OnAfterSpawnPlayer(SpawnPoint point, bool reset)
+        public static HashSet<GameAgent>.Enumerator GetEnumerator()
         {
-        }
-
-        public virtual void OnSpawn(SpawnPoint spawnPoint, bool reset)
-        {
-        }
-
-        public override string ToString()
-        {
-            if (!string.IsNullOrEmpty(agentIdentifier))
-            {
-                return string.Format("{0} '{1}'", base.ToString(), agentIdentifier);
-            }
-
-            return base.ToString();
+            return agents.GetEnumerator();
         }
     }
 } // Gameplay

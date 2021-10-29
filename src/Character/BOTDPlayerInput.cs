@@ -7,37 +7,38 @@ namespace Appalachia.KOC.Character
     {
         private static readonly IBOTDPlayerInputMapping[] _mappings;
 
-        public static BOTDPlayerInputMapping mapping { get; private set; }
-        public static bool forceMapping { get; private set; }
-
-        public static bool ignore { get; set; }
-
         static BOTDPlayerInput()
         {
-            _mappings =
-                new IBOTDPlayerInputMapping[Enum.GetNames(typeof(BOTDPlayerInputMapping)).Length];
+            _mappings = new IBOTDPlayerInputMapping[Enum.GetNames(typeof(BOTDPlayerInputMapping)).Length];
 
             foreach (var type in BOTDPlayerInputMappingAttribute.GetTypes())
             {
                 var m = Activator.CreateInstance(type) as IBOTDPlayerInputMapping;
 
                 for (var index = 0;
-                    index <
-                    type.GetCustomAttributes(typeof(BOTDPlayerInputMappingAttribute), false).Length;
+                    index < type.GetCustomAttributes(typeof(BOTDPlayerInputMappingAttribute), false).Length;
                     index++)
                 {
-                    var attribute = type.GetCustomAttributes(
-                        typeof(BOTDPlayerInputMappingAttribute),
-                        false
-                    )[index];
+                    var attribute =
+                        type.GetCustomAttributes(typeof(BOTDPlayerInputMappingAttribute), false)[index];
                     _mappings[((BOTDPlayerInputMappingAttribute) attribute).index] = m;
                 }
             }
         }
 
-        public static void SelectInputMapping(
-            BOTDPlayerInputMapping? @override = null,
-            bool force = false)
+        public static bool forceMapping { get; private set; }
+
+        public static bool ignore { get; set; }
+
+        public static BOTDPlayerInputMapping mapping { get; private set; }
+        public bool jump;
+        public float run;
+        public float zoom;
+
+        public Vector2 look;
+        public Vector2 move;
+
+        public static void SelectInputMapping(BOTDPlayerInputMapping? @override = null, bool force = false)
         {
             BOTDPlayerInputMapping selected;
 
@@ -81,8 +82,7 @@ namespace Appalachia.KOC.Character
                             selected = BOTDPlayerInputMapping.XboxForMac;
                         }
                     }
-                    else if ((i.IndexOf("sony",     ignoreCase) >= 0) ||
-                             (i.IndexOf("wireless", ignoreCase) >= 0))
+                    else if ((i.IndexOf("sony", ignoreCase) >= 0) || (i.IndexOf("wireless", ignoreCase) >= 0))
                     {
                         if ((Application.platform == RuntimePlatform.WindowsPlayer) ||
                             (Application.platform == RuntimePlatform.WindowsEditor))
@@ -127,11 +127,5 @@ namespace Appalachia.KOC.Character
                 input = default;
             }
         }
-
-        public Vector2 look;
-        public Vector2 move;
-        public float zoom;
-        public float run;
-        public bool jump;
     }
 } // Gameplay

@@ -7,12 +7,12 @@ namespace Appalachia.KOC.Character.States
     public struct PlayerParts : IEquatable<PlayerParts>
     {
         public Transform leftFoot;
-        public Transform rightFoot;
         public Transform leftHand;
-        public Transform rightHand;
         public Transform mouth;
+        public Transform rightFoot;
+        public Transform rightHand;
 
-#region IEquatable
+        #region IEquatable
 
         public bool Equals(PlayerParts other)
         {
@@ -51,6 +51,6 @@ namespace Appalachia.KOC.Character.States
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

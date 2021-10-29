@@ -2,11 +2,11 @@ namespace Appalachia.KOC.Character
 {
     public interface IBOTDPlayerInputMapping
     {
-        string moveX { get; }
-        string moveY { get; }
+        string jump { get; }
         string lookX { get; }
         string lookY { get; }
+        string moveX { get; }
+        string moveY { get; }
         string run { get; }
-        string jump { get; }
     }
 }

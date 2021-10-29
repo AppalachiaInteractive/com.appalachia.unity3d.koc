@@ -14,16 +14,22 @@ namespace Appalachia.KOC.Character.Audio.Execution
     public class CharacterFootstepAudioProcessor : CharacterAudioExecutionProcessor<FootstepSounds,
         AudioContext3, AudioContextParameters3>
     {
-        [Tooltip("Amount of attenuation when walking opposed to running")]
-        [Range(0, 1)]
-        public float footstepSpeedAttenuation = 0.5f;
-
         [Tooltip("Amount of attenuation when walking on flat ground opposed to rocky terrain")]
         [Range(0, 1)]
         public float footstepElevationAttenuation = 0.5f;
 
-        protected override void OnInitialize(CharacterAudioExecutionManagerBehaviour owner)
+        [Tooltip("Amount of attenuation when walking opposed to running")]
+        [Range(0, 1)]
+        public float footstepSpeedAttenuation = 0.5f;
+
+        public override void Direct(
+            CharacterAudioExecutionManagerBehaviour owner,
+            out Patch patch,
+            out AudioParameters.EnvelopeParams envelope,
+            out Vector3 position,
+            out float volume)
         {
+            throw new NotImplementedException();
         }
 
         public override bool Update(
@@ -58,14 +64,8 @@ namespace Appalachia.KOC.Character.Audio.Execution
             }*/
         }
 
-        public override void Direct(
-            CharacterAudioExecutionManagerBehaviour owner,
-            out Patch patch,
-            out AudioParameters.EnvelopeParams envelope,
-            out Vector3 position,
-            out float volume)
+        protected override void OnInitialize(CharacterAudioExecutionManagerBehaviour owner)
         {
-            throw new NotImplementedException();
         }
 
         /*public void PlayFootstep(

@@ -15,28 +15,25 @@ namespace Appalachia.KOC.Gameplay
 
         [Range(0, 10)] public float interpolationSpeed = 6f;
 
+        [Range(0, 10)] public float springDampening = 1.15f;
+
         [Space(9)]
         [Range(0, 10)]
         public float springMass = 2f;
 
-        [Range(0, 10)] public float springDampening = 1.15f;
         public Vector3 springCoefficients = new(0.3f, 0.45f, 0.3f);
+        private Spring _spring;
 
         private TypedInterpolator<LinearAngle> _pitch;
         private TypedInterpolator<LinearAngle> _roll;
-        private Spring _spring;
         private TypedInterpolator<LinearAngle> _yaw;
+
+        public Quaternion targetRotation => Quaternion.Euler(_pitch.target, _yaw.target, _roll.target);
 
         public float pitch
         {
             get => _pitch;
             set => _pitch.Target(value);
-        }
-
-        public float yaw
-        {
-            get => _yaw;
-            set => _yaw.Target(value);
         }
 
         public float roll
@@ -45,12 +42,15 @@ namespace Appalachia.KOC.Gameplay
             set => _roll.Target(value);
         }
 
-        public Quaternion targetRotation =>
-            Quaternion.Euler(_pitch.target, _yaw.target, _roll.target);
+        public float yaw
+        {
+            get => _yaw;
+            set => _yaw.Target(value);
+        }
 
         public override void Simulate(Vector3 playerPosition, Vector3 playerAngles, float deltaTime)
         {
-            var t = this.transform;
+            var t = transform;
             var interpolationDeltaTime = deltaTime * interpolationSpeed;
 
             _pitch.Update(interpolationDeltaTime);
@@ -92,8 +92,7 @@ namespace Appalachia.KOC.Gameplay
             dz *= 0.35f;
 
             position.y += eyeHeight;
-            position -= Quaternion.Euler(angles) *
-                        (new Vector3(0f, dy, dz) + new Vector3(ex, 0f, ez));
+            position -= Quaternion.Euler(angles) * (new Vector3(0f, dy, dz) + new Vector3(ex, 0f, ez));
 
             t.localPosition = position;
             t.localRotation = Quaternion.Euler(pitch, yaw, roll);

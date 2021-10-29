@@ -1,6 +1,6 @@
 using System;
+using Appalachia.CI.Constants;
 using Appalachia.KOC.Crafting.Base;
-using Appalachia.KOC.Crafting.Utility;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,8 +10,11 @@ namespace Appalachia.KOC.Crafting
     public class CraftedItem : CraftingIconComponent<CraftedItem>
     {
         public GameObject product;
-
-        [MenuItem(CraftableConstants.ITEM_MENU, false, CraftableConstants.ITEM_PRIORITY)]
+        [UnityEditor.MenuItem(
+            PKG.Menu.Appalachia.Components.Item.Base,
+            false,
+            PKG.Menu.Appalachia.Components.Item.Priority
+        )]
         private static void MENU_CREATE()
         {
             var created = CreateNew();

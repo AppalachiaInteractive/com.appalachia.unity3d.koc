@@ -9,13 +9,13 @@ namespace Appalachia.KOC.Character.Settings
     {
         [PropertyRange(0f, 10f)]
         [Tooltip("[0, 10]")]
-        public float walkSpeed;
+        public float runSpeed;
 
         [PropertyRange(0f, 10f)]
         [Tooltip("[0, 10]")]
-        public float runSpeed;
+        public float walkSpeed;
 
-#region IEquatable
+        #region IEquatable
 
         public bool Equals(PlayerLocomotion other)
         {
@@ -45,6 +45,6 @@ namespace Appalachia.KOC.Character.Settings
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

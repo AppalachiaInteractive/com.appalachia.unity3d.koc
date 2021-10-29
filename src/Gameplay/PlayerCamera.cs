@@ -9,6 +9,9 @@ namespace Appalachia.KOC.Gameplay
 
         private Camera _camera;
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        public DepthOfFieldAutoFocus autoFocus { get; private set; }
+
         public new Camera camera
         {
             get => _camera;
@@ -16,9 +19,6 @@ namespace Appalachia.KOC.Gameplay
 
             //autoFocus = value.GetComponent<DepthOfFieldAutoFocus>();
         }
-
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        public DepthOfFieldAutoFocus autoFocus { get; private set; }
 
         // ReSharper disable once UnusedParameter.Global
         public virtual void OnSpawn(SpawnPoint spawnPoint)

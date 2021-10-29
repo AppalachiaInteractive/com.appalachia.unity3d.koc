@@ -8,7 +8,7 @@ namespace Appalachia.KOC.Character.States
     {
         [SerializeField] public Vector2 lookingAngles;
 
-#region IEquatable
+        #region IEquatable
 
         public bool Equals(LookingState other)
         {
@@ -35,6 +35,6 @@ namespace Appalachia.KOC.Character.States
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

@@ -1,6 +1,6 @@
 using System;
+using Appalachia.CI.Constants;
 using Appalachia.KOC.Crafting.Base;
-using Appalachia.KOC.Crafting.Utility;
 using UnityEditor;
 
 namespace Appalachia.KOC.Crafting
@@ -8,7 +8,8 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class CraftingSkill : CraftingIconComponent<CraftingSkill>
     {
-        [MenuItem(CraftableConstants.SKILL_MENU, false, CraftableConstants.SKILL_PRIORITY)]
+        [UnityEditor.MenuItem(PKG.Menu.Appalachia.Components.Skill.Base, false, 
+            PKG.Menu.Appalachia.Components.Skill.Priority)]
         private static void MENU_CREATE()
         {
             var created = CreateNew();

@@ -5,13 +5,8 @@ namespace Appalachia.KOC.Gameplay
     public class SpawnPoint : GameAgent
     {
         public bool randomizePosition;
-        public LayerMask snapLayers = (1 << 0) | (1 << 15);
         public new Camera camera;
-
-        public new static SpawnPoint Find(string id)
-        {
-            return Find<SpawnPoint>(id);
-        }
+        public LayerMask snapLayers = (1 << 0) | (1 << 15);
 
         public void Spawn(GameAgent agent, bool reset)
         {
@@ -32,17 +27,11 @@ namespace Appalachia.KOC.Gameplay
 
         private bool SetPositionAndRotation(Transform agentTransform)
         {
-            var offset = randomizePosition
-                ? Random.insideUnitCircle * transform.localScale.y
-                : Vector2.zero;
+            var offset = randomizePosition ? Random.insideUnitCircle * transform.localScale.y : Vector2.zero;
 
             if (SnapToFloor(agentTransform, offset))
             {
-                agentTransform.localRotation = Quaternion.Euler(
-                    0f,
-                    transform.localEulerAngles.y,
-                    0f
-                );
+                agentTransform.localRotation = Quaternion.Euler(0f, transform.localEulerAngles.y, 0f);
                 return true;
             }
 
@@ -61,12 +50,14 @@ namespace Appalachia.KOC.Gameplay
                 return true;
             }
 
-            Debug.LogWarning(
-                "SnapToFloor: Failed to to snap " + agentTransform + " at " + this,
-                this
-            );
+            Debug.LogWarning("SnapToFloor: Failed to to snap " + agentTransform + " at " + this, this);
             agentTransform.localPosition = position;
             return false;
+        }
+
+        public new static SpawnPoint Find(string id)
+        {
+            return Find<SpawnPoint>(id);
         }
     }
 } // Gameplay

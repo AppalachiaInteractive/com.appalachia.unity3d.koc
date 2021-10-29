@@ -13,11 +13,40 @@ using UnityEngine;
 namespace Appalachia.KOC.Character.Audio.Execution
 {
     [Serializable]
-    public class CharacterBreathingAudioProcessor : CharacterAudioExecutionProcessor<
-        HumanBreathingSounds, AudioContext3, AudioContextParameters3>
+    public class CharacterBreathingAudioProcessor : CharacterAudioExecutionProcessor<HumanBreathingSounds,
+        AudioContext3, AudioContextParameters3>
     {
-        protected override void OnInitialize(CharacterAudioExecutionManagerBehaviour owner)
+        public override void Direct(
+            CharacterAudioExecutionManagerBehaviour owner,
+            out Patch patch,
+            out AudioParameters.EnvelopeParams envelope,
+            out Vector3 position,
+            out float volume)
         {
+            throw new NotImplementedException();
+        }
+
+        public override void OnJump(
+            PlayerCharacter player,
+            CharacterAudioExecutionManagerBehaviour audioManager)
+        {
+            var breathing = player.state.breathing;
+
+            if (breathing.inhaling && (Mathf.Abs(breathing.time - breathing.period) >= 1f))
+            {
+                breathing.time = 0f;
+            }
+        }
+
+        public override void OnLand(
+            PlayerCharacter player,
+            CharacterAudioExecutionManagerBehaviour audioManager)
+        {
+            var breathing = player.state.breathing;
+            if (!breathing.inhaling && (Mathf.Abs(breathing.time - breathing.period) >= 0.667f))
+            {
+                breathing.time = 0f;
+            }
         }
 
         public override bool Update(
@@ -37,8 +66,7 @@ namespace Appalachia.KOC.Character.Audio.Execution
 
             var intensity = movement.jumping ? 1f : movement.speedScalar;
 
-            var playerJumping =
-                movement.jumping || movement.jumpStart || positioning.hasNoFeetPlanted;
+            var playerJumping = movement.jumping || movement.jumpStart || positioning.hasNoFeetPlanted;
 
             if (positioning.hasAnyFootPlanted && !movement.swimming)
             {
@@ -49,8 +77,7 @@ namespace Appalachia.KOC.Character.Audio.Execution
                     deltaTime = 0f; // infinite time dilation when jumping to synchronize landing
                 }
 
-                breathing.nextIntensity +=
-                    (intensity - breathingSettings.intensityDampening) * deltaTime;
+                breathing.nextIntensity += (intensity - breathingSettings.intensityDampening) * deltaTime;
                 breathing.nextIntensity = Mathf.Clamp01(breathing.nextIntensity);
                 breathing.nextPace = Mathf.Lerp(
                     breathing.nextPace,
@@ -111,9 +138,7 @@ namespace Appalachia.KOC.Character.Audio.Execution
                         out var successful
                     );
 
-                    patch = successful
-                        ? bestPatch % (breathing.state == BreathDirection.Inhale)
-                        : default;
+                    patch = successful ? bestPatch % (breathing.state == BreathDirection.Inhale) : default;
                     envelope = default;
                     position = successful ? owner.player.parts.mouth.position : default;
 
@@ -128,37 +153,8 @@ namespace Appalachia.KOC.Character.Audio.Execution
             return false;
         }
 
-        public override void Direct(
-            CharacterAudioExecutionManagerBehaviour owner,
-            out Patch patch,
-            out AudioParameters.EnvelopeParams envelope,
-            out Vector3 position,
-            out float volume)
+        protected override void OnInitialize(CharacterAudioExecutionManagerBehaviour owner)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void OnJump(
-            PlayerCharacter player,
-            CharacterAudioExecutionManagerBehaviour audioManager)
-        {
-            var breathing = player.state.breathing;
-
-            if (breathing.inhaling && (Mathf.Abs(breathing.time - breathing.period) >= 1f))
-            {
-                breathing.time = 0f;
-            }
-        }
-
-        public override void OnLand(
-            PlayerCharacter player,
-            CharacterAudioExecutionManagerBehaviour audioManager)
-        {
-            var breathing = player.state.breathing;
-            if (!breathing.inhaling && (Mathf.Abs(breathing.time - breathing.period) >= 0.667f))
-            {
-                breathing.time = 0f;
-            }
         }
     }
 }

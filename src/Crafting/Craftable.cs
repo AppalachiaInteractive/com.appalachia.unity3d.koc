@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Appalachia.CI.Constants;
 using Appalachia.KOC.Crafting.Base;
-using Appalachia.KOC.Crafting.Utility;
 using Sirenix.OdinInspector;
 using UnityEditor;
 
@@ -10,20 +10,8 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class Craftable : CraftingIconComponent<Craftable>
     {
-        public List<CraftingRecipe> recipes;
-
         public List<CraftedItem> craftedItems;
-
-        [ButtonGroup]
-        public void NewCraftingRecipe()
-        {
-            if (recipes == null)
-            {
-                recipes = new List<CraftingRecipe>();
-            }
-
-            recipes.Add(new CraftingRecipe());
-        }
+        public List<CraftingRecipe> recipes;
 
         [ButtonGroup]
         public void NewCraftedItem()
@@ -36,7 +24,22 @@ namespace Appalachia.KOC.Crafting
             craftedItems.Add(CraftedItem.CreateNew());
         }
 
-        [MenuItem(CraftableConstants.CRAFTABLE_MENU, false, CraftableConstants.CRAFTABLE_PRIORITY)]
+        [ButtonGroup]
+        public void NewCraftingRecipe()
+        {
+            if (recipes == null)
+            {
+                recipes = new List<CraftingRecipe>();
+            }
+
+            recipes.Add(new CraftingRecipe());
+        }
+        
+        [UnityEditor.MenuItem(
+            PKG.Menu.Appalachia.Components.Craftable.Base,
+            false,
+            PKG.Menu.Appalachia.Components.Craftable.Priority
+        )]
         private static void MENU_CREATE()
         {
             var created = CreateNew();

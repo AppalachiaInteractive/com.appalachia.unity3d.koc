@@ -7,19 +7,19 @@ namespace Appalachia.KOC.Character.Settings
     [Serializable]
     public struct PlayerJumping : IEquatable<PlayerJumping>
     {
-        [PropertyRange(0f, 10f)]
-        [Tooltip("[0, 10]")]
-        public float force;
-
         [PropertyRange(0f, 20f)]
         [Tooltip("[0, 20]")]
         public float dampSpeed;
 
         [PropertyRange(0f, 10f)]
         [Tooltip("[0, 10]")]
+        public float force;
+
+        [PropertyRange(0f, 10f)]
+        [Tooltip("[0, 10]")]
         public float gravityFactor;
 
-#region IEquatable
+        #region IEquatable
 
         public bool Equals(PlayerJumping other)
         {
@@ -54,6 +54,6 @@ namespace Appalachia.KOC.Character.Settings
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

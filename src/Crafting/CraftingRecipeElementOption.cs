@@ -9,6 +9,15 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class CraftingRecipeElementOption
     {
+        public CraftingRecipeElementOption()
+        {
+            craftingTime = Duration.ONE_MINUTE();
+            ingredients = new List<CraftingIngredient>();
+            knowledges = new List<CraftingKnowledge>();
+            skills = new List<CraftingSkill>();
+            tools = new List<CraftingTool>();
+        }
+
         [SmartLabel] public Duration craftingTime;
 
         public List<CraftingIngredient> ingredients;
@@ -18,15 +27,6 @@ namespace Appalachia.KOC.Crafting
         [InlineEditor] public List<CraftingSkill> skills;
 
         [InlineEditor] public List<CraftingTool> tools;
-
-        public CraftingRecipeElementOption()
-        {
-            craftingTime = Duration.ONE_MINUTE();
-            ingredients = new List<CraftingIngredient>();
-            knowledges = new List<CraftingKnowledge>();
-            skills = new List<CraftingSkill>();
-            tools = new List<CraftingTool>();
-        }
 
         [ButtonGroup]
         public void NewIngredient()

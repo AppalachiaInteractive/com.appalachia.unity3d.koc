@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Appalachia.CI.Constants;
 using Appalachia.KOC.Crafting.Base;
-using Appalachia.KOC.Crafting.Utility;
 using Sirenix.OdinInspector;
 using UnityEditor;
 
@@ -26,10 +26,10 @@ namespace Appalachia.KOC.Crafting
             materials.Add(CraftingMaterial.CreateNew());
         }
 
-        [MenuItem(
-            CraftableConstants.MATERIAL_CATEGORY_MENU,
+        [UnityEditor.MenuItem(
+            PKG.Menu.Appalachia.Components.MaterialCategory.Base,
             false,
-            CraftableConstants.MATERIAL_CATEGORY_PRIORITY
+            PKG.Menu.Appalachia.Components.MaterialCategory.Priority
         )]
         private static void MENU_CREATE()
         {

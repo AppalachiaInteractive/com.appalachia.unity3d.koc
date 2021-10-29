@@ -6,20 +6,11 @@ namespace Appalachia.KOC.Character.Settings
     [Serializable]
     public struct PlayerSettings : IEquatable<PlayerSettings>
     {
-        [SerializeField] public PlayerLooking looking;
+        [SerializeField] public Breathing breathing;
         [SerializeField] public PlayerFootPlanting footPlanting;
         [SerializeField] public PlayerJumping jumping;
         [SerializeField] public PlayerLocomotion locomotion;
-        [SerializeField] public Breathing breathing;
-
-        public static PlayerSettings Create()
-        {
-            var instance = new PlayerSettings();
-
-            instance.Initialize();
-
-            return instance;
-        }
+        [SerializeField] public PlayerLooking looking;
 
         public void Initialize()
         {
@@ -62,7 +53,16 @@ namespace Appalachia.KOC.Character.Settings
             };
         }
 
-#region IEquatable
+        public static PlayerSettings Create()
+        {
+            var instance = new PlayerSettings();
+
+            instance.Initialize();
+
+            return instance;
+        }
+
+        #region IEquatable
 
         public bool Equals(PlayerSettings other)
         {
@@ -99,6 +99,6 @@ namespace Appalachia.KOC.Character.Settings
             return !left.Equals(right);
         }
 
-#endregion
+        #endregion
     }
 }

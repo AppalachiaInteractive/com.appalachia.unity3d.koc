@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Appalachia.KOC.Gameplay
 {
-    public class CameraRumble : AppalachiaMonoBehaviour
+    public class CameraRumble : AppalachiaBehaviour
     {
         public RumbleInfo innerDisplacement = new()
         {

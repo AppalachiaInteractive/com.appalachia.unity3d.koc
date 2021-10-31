@@ -9,7 +9,7 @@ namespace Appalachia.KOC.Crafting
     [Serializable]
     public class CraftingTool : CraftingIconComponent<CraftingTool>
     {
-        [UnityEditor.MenuItem(PKG.Menu.Appalachia.Components.Tool.Base, false, 
+        [UnityEditor.MenuItem(PKG.Menu.Appalachia.Components.Tool.Base, priority =  
             PKG.Menu.Appalachia.Components.Tool.Priority)]
         private static void MENU_CREATE()
         {

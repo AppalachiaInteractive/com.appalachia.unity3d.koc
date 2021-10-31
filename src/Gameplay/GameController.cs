@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace Appalachia.KOC.Gameplay
 {
-    public class GameController : AppalachiaMonoBehaviour
+    public class GameController : AppalachiaBehaviour
     {
         public delegate void AudioTransformsUpdater(Transform root, Transform eye);
 

@@ -8,7 +8,7 @@ namespace Appalachia.KOC.Gameplay
 {
     internal static partial class PKG
     {
-        public const int Priority = -277000;
+        public const int Priority = -285000;
         public const string Name = "KOC/Gameplay";
         public const string Prefix = Root + Name + "/";
         public const string Root = "Appalachia/";

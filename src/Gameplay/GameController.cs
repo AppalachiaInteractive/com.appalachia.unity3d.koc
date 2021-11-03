@@ -110,13 +110,17 @@ namespace Appalachia.KOC.Gameplay
                 playerCamera = Instantiate(playerCameraPrefab);
             }
 
-            for (var i = GameAgent.GetEnumerator(); i.MoveNext();)
+            using (var enumerator = GameAgent.GetEnumerator())
             {
-                if (i.Current)
+                for (var i = enumerator; i.MoveNext();)
                 {
-                    i.Current.OnBeforeSpawnPlayer(reset);
+                    if (i.Current)
+                    {
+                        i.Current.OnBeforeSpawnPlayer(reset);
+                    }
                 }
             }
+
 
             var cam = spawnPoint.camera ? spawnPoint.camera : defaultCamera;
             var cameraTransform = cam.transform;
@@ -137,12 +141,15 @@ namespace Appalachia.KOC.Gameplay
             }
 
             spawnPoint.Spawn(playerController, reset);
-
-            for (var i = GameAgent.GetEnumerator(); i.MoveNext();)
+            
+            using (var enumerator = GameAgent.GetEnumerator())
             {
-                if (i.Current)
+                for (var i = enumerator; i.MoveNext();)
                 {
-                    i.Current.OnAfterSpawnPlayer(spawnPoint, reset);
+                    if (i.Current)
+                    {
+                        i.Current.OnAfterSpawnPlayer(spawnPoint, reset);
+                    }
                 }
             }
 

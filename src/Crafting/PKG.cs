@@ -8,7 +8,7 @@ namespace Appalachia.KOC.Crafting
 {
     internal static partial class PKG
     {
-        public const int Priority = -275000;
+        public const int Priority = -278000;
         public const string Name = "KOC/Crafting";
         public const string Prefix = Root + Name + "/";
         public const string Root = "Appalachia/";

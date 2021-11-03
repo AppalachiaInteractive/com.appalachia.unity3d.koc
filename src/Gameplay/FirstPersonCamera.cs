@@ -1,5 +1,6 @@
 using Appalachia.Core.Extensions;
 using Appalachia.Simulation.Physical.Solvers;
+using Appalachia.Utility.Extensions;
 using Appalachia.Utility.Interpolation.Interpolators;
 using Appalachia.Utility.Interpolation.Modes;
 using UnityEngine;

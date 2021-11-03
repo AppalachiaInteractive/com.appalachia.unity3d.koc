@@ -1,6 +1,7 @@
 using Appalachia.Core.Extensions;
 using Appalachia.KOC.Character.Settings;
 using Appalachia.KOC.Character.States;
+using Appalachia.Utility.Extensions;
 using UnityEngine;
 
 namespace Appalachia.KOC.Character

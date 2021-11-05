@@ -15,6 +15,8 @@ C:/Users/Chris/com.appalachia/unity3d/appa/Assets/Appalachia.KOC
 `0.2.0`
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+| 195b38f5922a07e3c4dc94cdc21ce040cc61a296 | 2021-11-03 | Chris Schubert | Committing before testing the package v. repo switch |
+| fef6b82e5dedb21af17b938fb8fdf48b74b6ff02 | 2021-11-02 | Chris Schubert | Updating changelog and releaselog |
 | 0bd35bf14a9c3b734b13a560e6b2f0f9acb66ae2 | 2021-11-02 | Chris Schubert | Updating changelog and releaselog |
 | 64ae6179989ee26b6dd5760b48d3309c8568f8a1 | 2021-11-02 | Chris Schubert | Updating changelog and releaselog |
 | 60faf087b3feedcb71c1c214fd0e7cb59084e5a2 | 2021-11-02 | Chris Schubert | Updating changelog and releaselog |

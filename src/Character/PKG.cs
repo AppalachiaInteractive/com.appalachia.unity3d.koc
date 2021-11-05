@@ -8,7 +8,7 @@ namespace Appalachia.KOC.Character
 {
     internal static partial class PKG
     {
-        public const int Priority = -289000;
+        public const int Priority = -288000;
         public const string Name = "KOC/Character";
         public const string Prefix = Root + Name + "/";
         public const string Root = "Appalachia/";

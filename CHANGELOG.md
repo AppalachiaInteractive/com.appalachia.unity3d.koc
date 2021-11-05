@@ -14,6 +14,7 @@ C:/Users/Chris/com.appalachia/unity3d/appa/Assets/Appalachia.KOC
 ## Releasing
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+| 632e16408183ba98ac0a7d1afdc8d62f43468c17 | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |
 | d5ef6bbdaa779ecf22817672acaab26716c65c78 | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |
 | 3525db6c514de9b8b696889343a0733ece3fcf42 | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |
 | 02d8c64e7da072cc4fd8b1459789a9528b30f633 | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |

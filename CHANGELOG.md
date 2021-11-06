@@ -1,4 +1,6 @@
 ```
+C:/Users/Chris/com.appalachia/unity3d/appa/Assets/Appalachia.KOC
+ Let's go!  
  ________   ___  ___   ________   ________    ________   _______    ________      
 |\   ____\ |\  \|\  \ |\   __  \ |\   ___  \ |\   ____\ |\  ___ \  |\   ____\     
 \ \  \___| \ \  \\\  \\ \  \|\  \\ \  \\ \  \\ \  \___| \ \   __/| \ \  \___|_    
@@ -12,6 +14,7 @@
 ## Releasing
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+| 87e37f949fb12d9ac610d5f56374d3ae8f2dfb7b | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |
 | 1ec63cbb991d30228234d420c17e402b4a136f92 | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |
 | b9888c2b7e21a48e36564aeeb9b77c43617b7658 | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |
 | 408b76b6b3baf3e0e40a44aeb767271e8b73debc | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |

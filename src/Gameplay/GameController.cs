@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using Appalachia.Core.Behaviours;
 using Appalachia.KOC.Character;
+using Appalachia.Utility.Logging;
 using UnityEngine;
 using UnityEngine.Profiling;
 using Object = UnityEngine.Object;
@@ -96,7 +97,7 @@ namespace Appalachia.KOC.Gameplay
 
             if (!playerPrefab)
             {
-                Debug.LogError("Missing player prefab");
+                AppaLog.Error("Missing player prefab");
                 yield break;
             }
 

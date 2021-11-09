@@ -1,4 +1,5 @@
 using System;
+using Appalachia.Utility.Logging;
 using UnityEngine;
 
 namespace Appalachia.KOC.Character
@@ -102,7 +103,7 @@ namespace Appalachia.KOC.Character
             {
                 mapping = selected;
 
-                Debug.Log("SetInputMapping: " + selected);
+                AppaLog.Info("SetInputMapping: " + selected);
                 Input.ResetInputAxes();
             }
 

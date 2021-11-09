@@ -1,3 +1,4 @@
+using Appalachia.Utility.Logging;
 using UnityEngine;
 
 namespace Appalachia.KOC.Gameplay
@@ -50,7 +51,7 @@ namespace Appalachia.KOC.Gameplay
                 return true;
             }
 
-            Debug.LogWarning("SnapToFloor: Failed to to snap " + agentTransform + " at " + this, this);
+           AppaLog.Warning("SnapToFloor: Failed to to snap " + agentTransform + " at " + this, this);
             agentTransform.localPosition = position;
             return false;
         }

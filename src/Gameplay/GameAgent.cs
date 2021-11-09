@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Appalachia.Utility.Logging;
 using UnityEngine;
 
 namespace Appalachia.KOC.Gameplay
@@ -27,7 +28,7 @@ namespace Appalachia.KOC.Gameplay
         {
             if (!string.IsNullOrEmpty(agentIdentifier))
             {
-                return string.Format("{0} '{1}'", base.ToString(), agentIdentifier);
+                return $"{base.ToString()} '{agentIdentifier}'";
             }
 
             return base.ToString();
@@ -51,7 +52,7 @@ namespace Appalachia.KOC.Gameplay
                     }
                     else
                     {
-                        Debug.LogException(e);
+                        AppaLog.Exception(e);
                     }
                 }
             }

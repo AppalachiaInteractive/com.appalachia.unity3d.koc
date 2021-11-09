@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace Appalachia.KOC.Character.States
@@ -16,7 +17,7 @@ namespace Appalachia.KOC.Character.States
 
         #region IEquatable
 
-        public bool Equals(HumanMovementState other)
+        [DebuggerStepThrough] public bool Equals(HumanMovementState other)
         {
             return movingSpeed.Equals(other.movingSpeed) &&
                    speedScalar.Equals(other.speedScalar) &&
@@ -27,12 +28,12 @@ namespace Appalachia.KOC.Character.States
                    (jumpStart == other.jumpStart);
         }
 
-        public override bool Equals(object obj)
+        [DebuggerStepThrough] public override bool Equals(object obj)
         {
             return obj is HumanMovementState other && Equals(other);
         }
 
-        public override int GetHashCode()
+        [DebuggerStepThrough] public override int GetHashCode()
         {
             unchecked
             {
@@ -47,12 +48,12 @@ namespace Appalachia.KOC.Character.States
             }
         }
 
-        public static bool operator ==(HumanMovementState left, HumanMovementState right)
+        [DebuggerStepThrough] public static bool operator ==(HumanMovementState left, HumanMovementState right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(HumanMovementState left, HumanMovementState right)
+        [DebuggerStepThrough] public static bool operator !=(HumanMovementState left, HumanMovementState right)
         {
             return !left.Equals(right);
         }

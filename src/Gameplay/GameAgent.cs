@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Appalachia.Utility.Logging;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace Appalachia.KOC.Gameplay
         {
         }
 
-        public override string ToString()
+        [DebuggerStepThrough] public override string ToString()
         {
             if (!string.IsNullOrEmpty(agentIdentifier))
             {

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace Appalachia.KOC.Character.States
@@ -10,27 +11,27 @@ namespace Appalachia.KOC.Character.States
 
         #region IEquatable
 
-        public bool Equals(LookingState other)
+        [DebuggerStepThrough] public bool Equals(LookingState other)
         {
             return lookingAngles.Equals(other.lookingAngles);
         }
 
-        public override bool Equals(object obj)
+        [DebuggerStepThrough] public override bool Equals(object obj)
         {
             return obj is LookingState other && Equals(other);
         }
 
-        public override int GetHashCode()
+        [DebuggerStepThrough] public override int GetHashCode()
         {
             return lookingAngles.GetHashCode();
         }
 
-        public static bool operator ==(LookingState left, LookingState right)
+        [DebuggerStepThrough] public static bool operator ==(LookingState left, LookingState right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(LookingState left, LookingState right)
+        [DebuggerStepThrough] public static bool operator !=(LookingState left, LookingState right)
         {
             return !left.Equals(right);
         }

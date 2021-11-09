@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace Appalachia.KOC.Character.Settings
 
         #region IEquatable
 
-        public bool Equals(PlayerFootPlanting other)
+        [DebuggerStepThrough] public bool Equals(PlayerFootPlanting other)
         {
             return floorLayers.Equals(other.floorLayers) &&
                    walkStepDistance.Equals(other.walkStepDistance) &&
@@ -31,12 +32,12 @@ namespace Appalachia.KOC.Character.Settings
                    stopSpeedThreshold.Equals(other.stopSpeedThreshold);
         }
 
-        public override bool Equals(object obj)
+        [DebuggerStepThrough] public override bool Equals(object obj)
         {
             return obj is PlayerFootPlanting other && Equals(other);
         }
 
-        public override int GetHashCode()
+        [DebuggerStepThrough] public override int GetHashCode()
         {
             unchecked
             {
@@ -48,12 +49,12 @@ namespace Appalachia.KOC.Character.Settings
             }
         }
 
-        public static bool operator ==(PlayerFootPlanting left, PlayerFootPlanting right)
+        [DebuggerStepThrough] public static bool operator ==(PlayerFootPlanting left, PlayerFootPlanting right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PlayerFootPlanting left, PlayerFootPlanting right)
+        [DebuggerStepThrough] public static bool operator !=(PlayerFootPlanting left, PlayerFootPlanting right)
         {
             return !left.Equals(right);
         }

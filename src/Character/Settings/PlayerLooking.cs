@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace Appalachia.KOC.Character.Settings
 
         #region IEquatable
 
-        public bool Equals(PlayerLooking other)
+        [DebuggerStepThrough] public bool Equals(PlayerLooking other)
         {
             return lookSpeed.Equals(other.lookSpeed) &&
                    runLookSpeed.Equals(other.runLookSpeed) &&
@@ -33,12 +34,12 @@ namespace Appalachia.KOC.Character.Settings
                    pitchLimitMax.Equals(other.pitchLimitMax);
         }
 
-        public override bool Equals(object obj)
+        [DebuggerStepThrough] public override bool Equals(object obj)
         {
             return obj is PlayerLooking other && Equals(other);
         }
 
-        public override int GetHashCode()
+        [DebuggerStepThrough] public override int GetHashCode()
         {
             unchecked
             {
@@ -50,12 +51,12 @@ namespace Appalachia.KOC.Character.Settings
             }
         }
 
-        public static bool operator ==(PlayerLooking left, PlayerLooking right)
+        [DebuggerStepThrough] public static bool operator ==(PlayerLooking left, PlayerLooking right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PlayerLooking left, PlayerLooking right)
+        [DebuggerStepThrough] public static bool operator !=(PlayerLooking left, PlayerLooking right)
         {
             return !left.Equals(right);
         }

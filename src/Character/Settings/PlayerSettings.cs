@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace Appalachia.KOC.Character.Settings
@@ -64,7 +65,7 @@ namespace Appalachia.KOC.Character.Settings
 
         #region IEquatable
 
-        public bool Equals(PlayerSettings other)
+        [DebuggerStepThrough] public bool Equals(PlayerSettings other)
         {
             return looking.Equals(other.looking) &&
                    footPlanting.Equals(other.footPlanting) &&
@@ -72,12 +73,12 @@ namespace Appalachia.KOC.Character.Settings
                    locomotion.Equals(other.locomotion);
         }
 
-        public override bool Equals(object obj)
+        [DebuggerStepThrough] public override bool Equals(object obj)
         {
             return obj is PlayerSettings other && Equals(other);
         }
 
-        public override int GetHashCode()
+        [DebuggerStepThrough] public override int GetHashCode()
         {
             unchecked
             {
@@ -89,12 +90,12 @@ namespace Appalachia.KOC.Character.Settings
             }
         }
 
-        public static bool operator ==(PlayerSettings left, PlayerSettings right)
+        [DebuggerStepThrough] public static bool operator ==(PlayerSettings left, PlayerSettings right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PlayerSettings left, PlayerSettings right)
+        [DebuggerStepThrough] public static bool operator !=(PlayerSettings left, PlayerSettings right)
         {
             return !left.Equals(right);
         }

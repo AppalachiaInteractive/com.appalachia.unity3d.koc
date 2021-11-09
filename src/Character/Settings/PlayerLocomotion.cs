@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -17,17 +18,17 @@ namespace Appalachia.KOC.Character.Settings
 
         #region IEquatable
 
-        public bool Equals(PlayerLocomotion other)
+        [DebuggerStepThrough] public bool Equals(PlayerLocomotion other)
         {
             return walkSpeed.Equals(other.walkSpeed) && runSpeed.Equals(other.runSpeed);
         }
 
-        public override bool Equals(object obj)
+        [DebuggerStepThrough] public override bool Equals(object obj)
         {
             return obj is PlayerLocomotion other && Equals(other);
         }
 
-        public override int GetHashCode()
+        [DebuggerStepThrough] public override int GetHashCode()
         {
             unchecked
             {
@@ -35,12 +36,12 @@ namespace Appalachia.KOC.Character.Settings
             }
         }
 
-        public static bool operator ==(PlayerLocomotion left, PlayerLocomotion right)
+        [DebuggerStepThrough] public static bool operator ==(PlayerLocomotion left, PlayerLocomotion right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PlayerLocomotion left, PlayerLocomotion right)
+        [DebuggerStepThrough] public static bool operator !=(PlayerLocomotion left, PlayerLocomotion right)
         {
             return !left.Equals(right);
         }

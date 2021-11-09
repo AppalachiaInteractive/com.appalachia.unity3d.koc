@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace Appalachia.KOC.Character.States
@@ -20,7 +21,7 @@ namespace Appalachia.KOC.Character.States
 
         #region IEquatable
 
-        public bool Equals(HumanPositioningState other)
+        [DebuggerStepThrough] public bool Equals(HumanPositioningState other)
         {
             return leftFoot.Equals(other.leftFoot) &&
                    rightFoot.Equals(other.rightFoot) &&
@@ -28,12 +29,12 @@ namespace Appalachia.KOC.Character.States
                    lastVegetationPosition.Equals(other.lastVegetationPosition);
         }
 
-        public override bool Equals(object obj)
+        [DebuggerStepThrough] public override bool Equals(object obj)
         {
             return obj is HumanPositioningState other && Equals(other);
         }
 
-        public override int GetHashCode()
+        [DebuggerStepThrough] public override int GetHashCode()
         {
             unchecked
             {
@@ -45,12 +46,12 @@ namespace Appalachia.KOC.Character.States
             }
         }
 
-        public static bool operator ==(HumanPositioningState left, HumanPositioningState right)
+        [DebuggerStepThrough] public static bool operator ==(HumanPositioningState left, HumanPositioningState right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(HumanPositioningState left, HumanPositioningState right)
+        [DebuggerStepThrough] public static bool operator !=(HumanPositioningState left, HumanPositioningState right)
         {
             return !left.Equals(right);
         }

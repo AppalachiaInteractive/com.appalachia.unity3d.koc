@@ -14,6 +14,13 @@ C:/Users/Chris/com.appalachia/unity3d/appa/Assets/Appalachia.KOC
 ## Releasing
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+| 4e570d52c94732a159b561d2e0314c082eb587cc | 2021-11-08 | Chris Schubert | Upgrading to new logging library |
+
+
+ ## Tag: `v0.2.0`
+| Hash | Date | Author | Changes |
+|------|------|--------|---------|
+| af4f20828b0ce857fda16c32a5bcb8009602a0bb | 2021-11-06 | Chris Schubert | Updating changelog and releaselog |
 | 4662682930a51d723a87d33947517370a99c282c | 2021-11-06 | Chris Schubert | Updating changelog and releaselog |
 | f3acd820e814606c1b308f99b82364a06bd2a2ca | 2021-11-06 | Chris Schubert | Updating changelog and releaselog |
 | 87e37f949fb12d9ac610d5f56374d3ae8f2dfb7b | 2021-11-05 | Chris Schubert | Updating changelog and releaselog |

@@ -15,6 +15,7 @@ C:/Users/Chris/com.appalachia/unity3d/appa/Assets/Appalachia.KOC
 `0.2.0`
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+| 62c3138813b5a168c53506d9b03fabf4ad06bdfb | 2021-11-09 | Chris Schubert | Updating changelog and releaselog |
 | 61dae563bf300268ab8442126bf5128adeff4136 | 2021-11-09 | Chris Schubert | Removing empty directories, adding some debugger passthroughs, and reformatting asmdefs |
 | c211c602e5f58738d2826d43461e56836a6cf280 | 2021-11-08 | Chris Schubert | Updating changelog and releaselog |
 | 4e570d52c94732a159b561d2e0314c082eb587cc | 2021-11-08 | Chris Schubert | Upgrading to new logging library |
